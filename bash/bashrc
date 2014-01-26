@@ -35,7 +35,7 @@ export LC_CTYPE=en_US.utf-8
 export LC_COLLATE=C
 export LC_ALL=en_US.utf-8
 
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/emacs
 export CLICOLOR=1
 export LSCOLORS='ExGxFxdxCxDxDxBxBxExEx'
 export HISTCONTROL=ignoredups:ignorespace
