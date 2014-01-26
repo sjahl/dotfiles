@@ -6,3 +6,4 @@ ln -s ${PWD}/screen-tmux/screenrc $HOME/.screenrc
 ln -s ${PWD}/screen-tmux/tmux.conf $HOME/.tmux.conf
 ln -s ${PWD}/zsh/zshrc $HOME/.zshrc
 ln -s ${PWD}/emacs.d $HOME/.emacs.d
+ln -s ${PWD}/vim/vimrc $HOME/.vimrc
