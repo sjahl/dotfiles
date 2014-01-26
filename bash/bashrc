@@ -1,0 +1,173 @@
+# General Stuff
+
+# check for the existance of an ssh-agent ( see keyagent() )
+if `ps ux | grep -v grep | grep -q "ssh-agent -s"`; then
+  if [ -r ~/.keyagent ]; then
+    source ~/.keyagent
+  fi
+fi
+
+shopt -s checkwinsize
+shopt -s cdspell
+shopt -s dotglob
+shopt -s histappend
+
+
+# Variables
+#export PS1="[\u@\h \w]\$ " 
+
+#two line prompt
+export PS1='\[\e[1;4m\]\u@\h\[\e[m\] \[\e[1m\]\w\n\$\[\e[m\] '
+
+# my old prompts
+#export PS1='\[\e[1m\][\t][\u@\h]\[\e[34m\] \w\[\e[m\]\n\[\e[1;32m\]\$\[\e[0m\] \[\e[m\]'
+#export PS1='\[\e[1;31m\]\h\[\e[0m\]:\[\e[1;34m\]\w \[\e[0m\]\[\e[1;31m\]\u\[\e[0m\]\$ '
+#export PS1='\[\e[1m\][\u@\h \w]\$\[\e[0m\] \[\e[m\]'
+
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PATH=/sbin:/usr/sbin:~/bin:/usr/local/bin:/usr/local/sbin${PATH}
+
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+
+export LANG=en_US.utf-8
+export LANGUAGE=en_US.utf-8
+export LC_CTYPE=en_US.utf-8
+export LC_COLLATE=C
+export LC_ALL=en_US.utf-8
+
+export EDITOR=/usr/bin/vim
+export CLICOLOR=1
+export LSCOLORS='ExGxFxdxCxDxDxBxBxExEx'
+export HISTCONTROL=ignoredups:ignorespace
+export HISTTIMEFORMAT="%F %T "
+export HISTORY=5000
+export MAILCHECK=20
+export HISTIGNORE="&:ls:[bf]g:exit"
+export PAGER=/usr/bin/less
+
+
+# Aliases
+alias ll='ls -al'
+alias sl='ls'
+alias cdd='cd'
+alias xs='cd'
+alias cim='vim'
+alias vi='vim'
+alias clearmemcache='sudo sh -c "sync; echo 3 > /proc/sys/vm/drop_caches"'
+alias psc='ps xawf -eo pid,user,cgroup,args'
+alias srd='screen -rd'
+alias sr='screen -r'
+alias xl='i3lock -n -c 333333'
+alias vimtab='vim "+set noexpandtab"'
+alias gvimtab='gvim "+set noexpandtab"'
+alias ta='tmux a'
+alias gpom='git push origin master'
+alias shs='ssh'
+alias dropwiki='cd ~/Sites/gollum && gollum-site generate --output_path ~/Dropbox/Wiki'
+alias newmodule='mkdir -p $1/{manifests,files,templates} && touch $1/manifests/{init.pp,install.pp,config.pp,service.pp}'
+alias ri='ri -T'
+alias tmux="TERM=screen-256color-bce tmux"
+alias servergvim='gvim --servername JAHL'
+alias clientgvim='gvim --servername JAHL --remote-tab'
+alias ssh-nokerberos='ssh -o GSSAPIAuthentication=no -o GSSAPIKeyExchange=no -o GSSAPIDelegateCredentials=no -o GSSAPITrustDNS=no'
+alias afshome='cd /afs/csail/u/j/jahl'
+alias mosh='mosh --server="LANG=en_US.UTF-8 mosh-server"'
+alias backup-inc='cyphertite -I /home/jahl/.cyphertite/dirs -cvRf home_1.ct /home/jahl'
+alias backup-zero='cyphertite -I /home/jahl/.cyphertite/dirs -0vRf home_1.ct /home/jahl'
+alias backup-cull='cyphertitectl cull'
+alias password='openssl rand -base64 14'
+
+# Functions
+
+# Handy Extract Program.
+function extract() 
+{
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1     ;;  
+            *.tar.gz)    tar xvzf $1     ;;  
+            *.bz2)       bunzip2 $1      ;;  
+            *.rar)       unrar x $1      ;;  
+            *.gz)        gunzip $1       ;;  
+            *.tar)       tar xvf $1      ;;  
+            *.tbz2)      tar xvjf $1     ;;  
+            *.tgz)       tar xvzf $1     ;;  
+            *.zip)       unzip $1        ;;  
+            *.Z)         uncompress $1   ;;  
+            *.7z)        7z x $1         ;;  
+            *)           echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+            echo "'$1' is not a valid file"
+    fi  
+}
+
+
+# set up ssh tunneling for ARD ports
+function remote {
+    if [ $# -eq 2 ]; then
+        mac=$1
+        proxy=$2
+        sudo ssh -L 625:$mac:625 -L 311:$mac:311 -L 3283:$mac:3283 -L 5900:$mac:5900 $proxy
+      else
+        echo "Usage: remote <hostname/ip of tunneled mac> <user@proxyhost>"
+    fi
+}
+
+# re-orders the OSG subject DN string for easy pasting into the VO admin interface.
+function stringfix {
+    string=$1
+    echo -n $1 | ruby -n -e 'new = $_.split(","); puts "/" + new[3] + "/" + new[2] + "/" + new[1] + "/" + new[0]'
+}
+
+# sbgrid-admin ssh-agent
+function keyagent {
+  SSHAGENT="/usr/bin/ssh-agent"
+  SSHAGENTARGS="-s"
+  if [ -z "$SSH_AGENT_PID" -a -x "$SSHAGENT" ]; then
+    echo "starting agent on `hostname`..." 
+    eval `$SSHAGENT $SSHAGENTARGS | tee ~/.keyagent`
+    if [ -f /nfs/userdocs/ps/sbgrid-admin/.ssh/id_dsa ]; then
+        ssh-add /nfs/userdocs/ps/sbgrid-admin/.ssh/id_dsa
+        ssh-add ~/.ssh/id_dsa
+    fi
+    if [ -f ~/.ssh/id_rsa ]; then
+        ssh-add ~/.ssh/id_rsa
+    fi
+  else
+    echo "NOTICE: agent not started; existing process ($SSH_AGENT_PID) detected (socket $SSH_AUTH_SOCK)."
+  fi
+}
+
+function keyagent_kill {
+  if [ $SSH_AGENT_PID ]; then
+    eval `ssh-agent -k`
+    unset SSH_AGENT_PID
+    unset SSH_AUTH_SOCK
+    rm -f ~/.keyagent
+  fi
+}
+
+# only apply certain annoying platform specific stuff on the right platforms.
+case ${OSTYPE} in
+
+# Linux returns strings like: linux-gnu, linux
+    linux*)
+      alias       ls='ls --color=always'
+      export PATH=/sbin:/usr/sbin:~/build/linux/bin:~/bin:/usr/local/bin:${PATH}
+      if [ -f /etc/bash_completion ]; then
+          . /etc/bash_completion
+      fi
+        ;;  
+    
+# MacOS X returns strings like: darwin
+    darwin*)
+    alias ls="ls -G"
+    # Bash completion
+    if [ -f `brew --prefix`/etc/bash_completion ]; then
+        . `brew --prefix`/etc/bash_completion
+    fi
+        ;;  
+esac
+
+export PATH=${PATH}:/home/jahl/cm-android/adt-bundle-linux-x86_64-20131030/sdk/platform-tools
