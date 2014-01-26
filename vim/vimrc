@@ -1,0 +1,92 @@
+" Install Plugins with vundle
+
+set rtp+=~/.vim/bundle/vundle/
+
+set nocompatible
+filetype off
+call vundle#rc()
+
+" Keep this
+Bundle 'gmarik/vundle'
+
+Bundle 'rodjek/vim-puppet'
+Bundle 'godlygeek/tabular'
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'git@bitbucket.org:kisom/eink.vim.git'
+Bundle 'tpope/vim-markdown'
+
+
+" Editor behavior
+
+set autoindent
+set smartindent
+set ttyfast
+set et
+set nobackup
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set comments=b:#,:%,fb:-,n:>,n:)
+set noerrorbells
+set shell=zsh
+set ignorecase
+set modelines=0
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+filetype on " enable filetype detection
+filetype indent on " enable filetype-specific indenting
+filetype plugin on
+"set printoptions=paper:letter
+
+" Editor looks
+set laststatus=2
+set ruler
+set showcmd
+set showmode
+set number
+set title
+set scrolloff=3
+set hlsearch
+syntax on
+set background=dark
+
+" eww
+" GUI settings
+if has("gui_running")
+    colorscheme jellybeansmod
+    set cursorline
+    set lines=40
+    set columns=100
+    set t_Co=256
+    set gfn=Ubuntu\ Mono\ 12
+    set relativenumber
+    "set guicursor=a:hor1,a:blinkon0
+    "autocmd FocusLost * :set number
+    "autocmd FocusGained * :set relativenumber
+    autocmd InsertEnter * :set number
+    autocmd InsertLeave * :set relativenumber
+endif
+
+if has("gui_macvim")
+    set gfn=Menlo:h14
+endif
+
+
+" Keyboard mappings
+let mapleader = ","
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+nnoremap <F3> :set paste!<CR>
+nnoremap <leader>c<space> :NERDCommenter
+nnoremap <F4> :NERDTreeToggle<CR>
+nnoremap <F5> :set list!<CR>
+" sort visually hilighted lines
+map <F9> :sort<CR>
+map Y y$
+
+" mess with the noobs
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
