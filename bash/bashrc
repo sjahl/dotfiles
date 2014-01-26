@@ -66,8 +66,8 @@ alias ri='ri -T'
 alias tmux="TERM=screen-256color-bce tmux"
 alias ssh-nokerberos='ssh -o GSSAPIAuthentication=no -o GSSAPIKeyExchange=no -o GSSAPIDelegateCredentials=no -o GSSAPITrustDNS=no'
 alias afshome='cd /afs/csail/u/j/jahl'
-alias backup-inc='cyphertite -I /home/jahl/.cyphertite/dirs -cvRf home_1.ct /home/jahl'
-alias backup-zero='cyphertite -I /home/jahl/.cyphertite/dirs -0vRf home_1.ct /home/jahl'
+alias backup-inc='cyphertite -I /home/${USER}/.cyphertite/dirs -cvRf home_1.ct /home/jahl'
+alias backup-zero='cyphertite -I /home/${USER}/.cyphertite/dirs -0vRf home_1.ct /home/jahl'
 alias backup-cull='cyphertitectl cull'
 alias password='openssl rand -base64 14'
 
