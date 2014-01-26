@@ -61,17 +61,11 @@ alias xl='i3lock -n -c 333333'
 alias vimtab='vim "+set noexpandtab"'
 alias gvimtab='gvim "+set noexpandtab"'
 alias ta='tmux a'
-alias gpom='git push origin master'
 alias shs='ssh'
-alias dropwiki='cd ~/Sites/gollum && gollum-site generate --output_path ~/Dropbox/Wiki'
-alias newmodule='mkdir -p $1/{manifests,files,templates} && touch $1/manifests/{init.pp,install.pp,config.pp,service.pp}'
 alias ri='ri -T'
 alias tmux="TERM=screen-256color-bce tmux"
-alias servergvim='gvim --servername JAHL'
-alias clientgvim='gvim --servername JAHL --remote-tab'
 alias ssh-nokerberos='ssh -o GSSAPIAuthentication=no -o GSSAPIKeyExchange=no -o GSSAPIDelegateCredentials=no -o GSSAPITrustDNS=no'
 alias afshome='cd /afs/csail/u/j/jahl'
-alias mosh='mosh --server="LANG=en_US.UTF-8 mosh-server"'
 alias backup-inc='cyphertite -I /home/jahl/.cyphertite/dirs -cvRf home_1.ct /home/jahl'
 alias backup-zero='cyphertite -I /home/jahl/.cyphertite/dirs -0vRf home_1.ct /home/jahl'
 alias backup-cull='cyphertitectl cull'
@@ -114,23 +108,12 @@ function remote {
     fi
 }
 
-# re-orders the OSG subject DN string for easy pasting into the VO admin interface.
-function stringfix {
-    string=$1
-    echo -n $1 | ruby -n -e 'new = $_.split(","); puts "/" + new[3] + "/" + new[2] + "/" + new[1] + "/" + new[0]'
-}
-
-# sbgrid-admin ssh-agent
 function keyagent {
   SSHAGENT="/usr/bin/ssh-agent"
   SSHAGENTARGS="-s"
   if [ -z "$SSH_AGENT_PID" -a -x "$SSHAGENT" ]; then
     echo "starting agent on `hostname`..." 
     eval `$SSHAGENT $SSHAGENTARGS | tee ~/.keyagent`
-    if [ -f /nfs/userdocs/ps/sbgrid-admin/.ssh/id_dsa ]; then
-        ssh-add /nfs/userdocs/ps/sbgrid-admin/.ssh/id_dsa
-        ssh-add ~/.ssh/id_dsa
-    fi
     if [ -f ~/.ssh/id_rsa ]; then
         ssh-add ~/.ssh/id_rsa
     fi
@@ -154,7 +137,6 @@ case ${OSTYPE} in
 # Linux returns strings like: linux-gnu, linux
     linux*)
       alias       ls='ls --color=always'
-      export PATH=/sbin:/usr/sbin:~/build/linux/bin:~/bin:/usr/local/bin:${PATH}
       if [ -f /etc/bash_completion ]; then
           . /etc/bash_completion
       fi
@@ -170,4 +152,4 @@ case ${OSTYPE} in
         ;;  
 esac
 
-export PATH=${PATH}:/home/jahl/cm-android/adt-bundle-linux-x86_64-20131030/sdk/platform-tools
+export PATH=~/bin:${PATH}
