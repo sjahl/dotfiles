@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ln -si `pwd`/bash/bashrc ~/.bashrc
-ln -si `pwd`/bash/bash_profile ~/.bash_profile
-ln -si `pwd`/screen-tmux/screenrc ~/.screenrc
-ln -si `pwd`/screen-tmux/tmux.conf ~/.tmux.conf
-ln -si `pwd`/zsh/zshrc ~/.zshrc
-ln -si `pwd`/emacs.d ~/.emacs.d
+ln -s ${PWD}/bash/bashrc $HOME/.bashrc
+ln -s ${PWD}/bash/bash_profile $HOME/.bash_profile
+ln -s ${PWD}/screen-tmux/screenrc $HOME/.screenrc
+ln -s ${PWD}/screen-tmux/tmux.conf $HOME/.tmux.conf
+ln -s ${PWD}/zsh/zshrc $HOME/.zshrc
+ln -s ${PWD}/emacs.d $HOME/.emacs.d
