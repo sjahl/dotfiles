@@ -5,6 +5,7 @@
 
 (tool-bar-mode -1)
 (electric-pair-mode +1)
+(column-number-mode +1)
 
 (require 'ido)
 (ido-mode t)
@@ -19,7 +20,9 @@
 (require 'package)
 (add-to-list 'package-archives 
     '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+      "http://marmalade-repo.org/packages/")
+    '("melpa" .
+      "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
 (if window-system
