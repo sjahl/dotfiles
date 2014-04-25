@@ -6,7 +6,7 @@
 (tool-bar-mode -1)
 ; (electric-pair-mode +1)
 (column-number-mode +1)
-(linum-mode +1)
+(show-paren-mode +1)
 
 (require 'ido)
 (ido-mode t)
