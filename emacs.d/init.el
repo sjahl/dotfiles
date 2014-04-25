@@ -4,8 +4,9 @@
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 
 (tool-bar-mode -1)
-(electric-pair-mode +1)
+; (electric-pair-mode +1)
 (column-number-mode +1)
+(linum-mode +1)
 
 (require 'ido)
 (ido-mode t)
