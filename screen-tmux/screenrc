@@ -1,12 +1,11 @@
 defscrollback 10000 
 vbell off 
 startup_message off 
-shell -zsh
 term screen
 # enable scroll-wheel
 termcapinfo xterm* ti@:te@
 
 caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c"
 
-escape "^Bb"
+escape ^Oo
 #caption always '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%C:%s // %m-%d-%y' 

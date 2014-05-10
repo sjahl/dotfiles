@@ -9,28 +9,34 @@
 (show-paren-mode +1)
 
 (require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
+ (ido-mode t)
+ (setq ido-enable-flex-matching t)
 
 (require 'copy-line)
 (define-key global-map (kbd "C-c k") 'kill-whole-line)
 (define-key global-map (kbd "C-c C-k") 'copy-line)
 
+(define-key global-map (kbd "C-c C-=") 'align-regexp)
+
 (add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
 
 (require 'package)
 (add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/")
-    '("melpa" .
-      "http://melpa.milkbox.net/packages/"))
+	     '("melpa" .
+	       "http://melpa.milkbox.net/packages/")
+	     '("marmalade" .
+	       "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 (if window-system
-    (load-theme 'solarized-dark t))
+    (progn
+    (load-theme 'solarized-dark t)
+    (global-linum-mode 1)
+    (evil-mode 1)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+

@@ -28,7 +28,6 @@ set nobackup
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set comments=b:#,:%,fb:-,n:>,n:)
 set noerrorbells
-set shell=zsh
 set ignorecase
 set modelines=0
 set tabstop=4
