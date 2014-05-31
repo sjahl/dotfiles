@@ -1,21 +1,19 @@
 " Install Plugins with vundle
 
-set rtp+=~/.vim/bundle/vundle/
-
-set nocompatible
-filetype off
-call vundle#rc()
+"set nocompatible
+"filetype off
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+execute pathogen#infect()
 
 " Keep this
-Bundle 'gmarik/vundle'
+"Plugin 'gmarik/Vundle.vim'
 
-Bundle 'rodjek/vim-puppet'
-Bundle 'godlygeek/tabular'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'git@bitbucket.org:kisom/eink.vim.git'
-Bundle 'tpope/vim-markdown'
+"Plugin 'rodjek/vim-puppet'
+"Plugin 'godlygeek/tabular'
+"Plugin 'msanders/snipmate.vim'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdcommenter'
 
 
 " Editor behavior
