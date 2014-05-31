@@ -30,9 +30,7 @@
 
 (if window-system
     (progn
-    (load-theme 'solarized-dark t)
-    (global-linum-mode 1)
-    (evil-mode 1)))
+    (load-theme 'molokai t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -40,3 +38,5 @@
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
+(setq evil-want-C-u-scroll t)
+(evil-mode 1)

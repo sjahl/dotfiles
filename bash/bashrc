@@ -1,11 +1,11 @@
 # General Stuff
 
 # check for the existance of an ssh-agent ( see keyagent() )
-if `ps ux | grep -v grep | grep -q "ssh-agent -s"`; then
-  if [ -r ~/.keyagent ]; then
-    source ~/.keyagent
-  fi
-fi
+#if `ps ux | grep -v grep | grep -q "ssh-agent -s"`; then
+#  if [ -r ~/.keyagent ]; then
+#    source ~/.keyagent
+# fi
+#fi
 
 shopt -s checkwinsize
 shopt -s cdspell
@@ -108,28 +108,28 @@ function remote {
     fi
 }
 
-function keyagent {
-  SSHAGENT="/usr/bin/ssh-agent"
-  SSHAGENTARGS="-s"
-  if [ -z "$SSH_AGENT_PID" -a -x "$SSHAGENT" ]; then
-    echo "starting agent on `hostname`..." 
-    eval `$SSHAGENT $SSHAGENTARGS | tee ~/.keyagent`
-    if [ -f ~/.ssh/id_rsa ]; then
-        ssh-add ~/.ssh/id_rsa
-    fi
-  else
-    echo "NOTICE: agent not started; existing process ($SSH_AGENT_PID) detected (socket $SSH_AUTH_SOCK)."
-  fi
-}
+#function keyagent {
+#  SSHAGENT="/usr/bin/ssh-agent"
+#  SSHAGENTARGS="-s"
+#  if [ -z "$SSH_AGENT_PID" -a -x "$SSHAGENT" ]; then
+#    echo "starting agent on `hostname`..." 
+#    eval `$SSHAGENT $SSHAGENTARGS | tee ~/.keyagent`
+#    if [ -f ~/.ssh/id_rsa ]; then
+#        ssh-add ~/.ssh/id_rsa
+#    fi
+#  else
+#    echo "NOTICE: agent not started; existing process ($SSH_AGENT_PID) detected (socket $SSH_AUTH_SOCK)."
+#  fi
+#}
 
-function keyagent_kill {
-  if [ $SSH_AGENT_PID ]; then
-    eval `ssh-agent -k`
-    unset SSH_AGENT_PID
-    unset SSH_AUTH_SOCK
-    rm -f ~/.keyagent
-  fi
-}
+#function keyagent_kill {
+#  if [ $SSH_AGENT_PID ]; then
+#    eval `ssh-agent -k`
+#    unset SSH_AGENT_PID
+#    unset SSH_AUTH_SOCK
+#    rm -f ~/.keyagent
+#  fi
+#}
 
 # only apply certain annoying platform specific stuff on the right platforms.
 case ${OSTYPE} in
