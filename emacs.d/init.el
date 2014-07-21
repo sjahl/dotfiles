@@ -30,7 +30,7 @@
 
 (if window-system
     (progn
-    (load-theme 'molokai t)))
+    (load-theme 'junio t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -40,3 +40,5 @@
 
 (setq evil-want-C-u-scroll t)
 (evil-mode 1)
+(setq inhibit-startup-message t)
+(setq inhibit-splash-screen t)

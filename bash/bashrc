@@ -17,15 +17,16 @@ shopt -s histappend
 #export PS1="[\u@\h \w]\$ " 
 
 #two line prompt
-export PS1='\[\e[1;4m\]\u@\h\[\e[m\] \[\e[1m\]\w\n\$\[\e[m\] '
+export PS1='\[\e[1m\]\u@\h\[\e[m\] \[\e[1m\]\w \e[1;33m\$\[\e[m\] '
 
 # my old prompts
 #export PS1='\[\e[1m\][\t][\u@\h]\[\e[34m\] \w\[\e[m\]\n\[\e[1;32m\]\$\[\e[0m\] \[\e[m\]'
 #export PS1='\[\e[1;31m\]\h\[\e[0m\]:\[\e[1;34m\]\w \[\e[0m\]\[\e[1;31m\]\u\[\e[0m\]\$ '
 #export PS1='\[\e[1m\][\u@\h \w]\$\[\e[0m\] \[\e[m\]'
+#export PS1='\[\e[1;4m\]\u@\h\[\e[m\] \[\e[1m\]\w\n\$\[\e[m\] '
 
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export PATH=/sbin:/usr/sbin:~/bin:/usr/local/bin:/usr/local/sbin${PATH}
+#export PATH=/sbin:/usr/sbin:~/bin:/usr/local/bin:/usr/local/sbin${PATH}
 
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 
@@ -70,6 +71,7 @@ alias backup-inc='cyphertite -I /home/${USER}/.cyphertite/dirs -cvRf home_1.ct /
 alias backup-zero='cyphertite -I /home/${USER}/.cyphertite/dirs -0vRf home_1.ct /home/$USER'
 alias backup-cull='cyphertitectl cull'
 alias password='openssl rand -base64 14'
+alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 
 # Functions
 
@@ -152,4 +154,4 @@ case ${OSTYPE} in
         ;;  
 esac
 
-export PATH=~/bin:${PATH}
+export PATH=~/bin:${PATH}:/sbin:/usr/sbin:/usr/local/packer
