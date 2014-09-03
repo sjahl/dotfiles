@@ -18,7 +18,7 @@
 
 (define-key global-map (kbd "C-c C-=") 'align-regexp)
 
-(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+(add-to-list 'auto-mode-alist '("/mutt" . message-mode))
 
 (require 'package)
 (add-to-list 'package-archives 
@@ -38,7 +38,9 @@
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
-(setq evil-want-C-u-scroll t)
-(evil-mode 1)
+;;(setq evil-want-C-u-scroll t)
+;;(evil-mode 1)
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
+(autoload 'notmuch "notmuch" "notmuch mail" t)
+
