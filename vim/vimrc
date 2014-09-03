@@ -1,19 +1,21 @@
 " Install Plugins with vundle
 
-"set nocompatible
-"filetype off
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-execute pathogen#infect()
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"execute pathogen#infect()
 
 " Keep this
-"Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/Vundle.vim'
 
-"Plugin 'rodjek/vim-puppet'
-"Plugin 'godlygeek/tabular'
-"Plugin 'msanders/snipmate.vim'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'scrooloose/nerdcommenter'
+Plugin 'rodjek/vim-puppet'
+Plugin 'godlygeek/tabular'
+Plugin 'msanders/snipmate.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+
+call vundle#end()
 
 
 " Editor behavior
@@ -33,8 +35,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 filetype on " enable filetype detection
-filetype indent on " enable filetype-specific indenting
-filetype plugin on
+filetype plugin indent on " enable filetype-specific indenting
 "set printoptions=paper:letter
 
 " Editor looks
