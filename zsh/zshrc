@@ -3,8 +3,8 @@ compinit
 promptinit
 colors
 
-PROMPT="%U%B%n@%m%u %~%{$reset_color%}
-%B%#%{$reset_color%}%b "
+#PROMPT="%B%n@%m%u %~%{$reset_color%}%B $fg_bold[yellow]%#%{$reset_color%}%b "
+prompt adam1
 
 HISTFILE=~/.zhistfile
 HISTSIZE=1000
