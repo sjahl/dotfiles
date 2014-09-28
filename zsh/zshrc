@@ -81,4 +81,4 @@ function passgen() {
     openssl rand -base64 $chars
 }
 
-[ -n "$TMUX" ] && export TERM=screen
+[ -n "$TMUX" ] && export TERM=screen-256color
