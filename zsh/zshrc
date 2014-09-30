@@ -29,17 +29,15 @@ alias xl='i3lock -n -c 333333'
 alias vimtab='vim "+set noexpandtab"'
 alias gvimtab='gvim "+set noexpandtab"'
 alias ta='tmux a'
+alias tmux="TERM=screen-256color-bce tmux"
 alias gpom='git push origin master'
 alias mosh='mosh --server="LANG=en_US.UTF-8 mosh-server"'
 alias afshome='cd /afs/csail/u/j/jahl'
-alias rogue='mutt -F ~/git/dotfiles/.mutt/roguerc'
-alias gmail='mutt -F ~/.mutt/gmail.muttrc'
 alias backup-inc='cyphertite -I /home/$USER/.cyphertite/dirs -cvRf home_1.ct /home/$USER'
 alias backup-zero='cyphertite -I /home/$USER/.cyphertite/dirs -0vRf home_1.ct /home/$USER'
 alias backup-cull='cyphertitectl cull'
-alias servergvim='gvim --servername JAHL'
-alias clientgvim='gvim --servername JAHL --remote-tab'
 alias ssh-nokerberos='ssh -o GSSAPIAuthentication=no -o GSSAPIKeyExchange=no -o GSSAPIDelegateCredentials=no -o GSSAPITrustDNS=no'
+alias mutt='mutt -n -F ~/.mutt/notmuchrc'
 
 case ${OSTYPE} in
     darwin*)
@@ -81,4 +79,3 @@ function passgen() {
     openssl rand -base64 $chars
 }
 
-[ -n "$TMUX" ] && export TERM=screen-256color
