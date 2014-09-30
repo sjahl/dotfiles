@@ -2,7 +2,8 @@
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(load-file "~/.emacs.d/notmuch-config.el")
+(if (file-exists-p "~/.emacs.d/notmuch-config.el")
+    (load-file "~/.emacs.d/notmuch-config.el"))
 
 (tool-bar-mode -1)
 ; (electric-pair-mode +1)
