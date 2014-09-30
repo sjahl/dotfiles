@@ -19,7 +19,9 @@
 
 (define-key global-map (kbd "C-c C-=") 'align-regexp)
 
-(add-to-list 'auto-mode-alist '("/mutt" . message-mode))
+(add-to-list 'auto-mode-alist '(".*mutt.*" . message-mode))
+(setq mail-header-separator "")
+(add-hook 'message-mode-hook 'auto-fill-mode)
 
 (require 'package)
 (add-to-list 'package-archives 
