@@ -5,6 +5,11 @@
 (if (file-exists-p "~/.emacs.d/notmuch-config.el")
     (load-file "~/.emacs.d/notmuch-config.el"))
 
+;; markdown!
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 (tool-bar-mode -1)
 ; (electric-pair-mode +1)
 (column-number-mode +1)
