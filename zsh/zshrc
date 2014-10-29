@@ -37,7 +37,7 @@ alias backup-inc='cyphertite -I /home/$USER/.cyphertite/dirs -cvRf home_1.ct /ho
 alias backup-zero='cyphertite -I /home/$USER/.cyphertite/dirs -0vRf home_1.ct /home/$USER'
 alias backup-cull='cyphertitectl cull'
 alias ssh-nokerberos='ssh -o GSSAPIAuthentication=no -o GSSAPIKeyExchange=no -o GSSAPIDelegateCredentials=no -o GSSAPITrustDNS=no'
-alias mutt='mutt -n -F ~/.mutt/notmuchrc'
+alias workmutt='mutt -n -F ~/.mutt/notmuchrc'
 alias pgrep='pgrep -a'
 
 case ${OSTYPE} in
@@ -46,4 +46,3 @@ case ${OSTYPE} in
     linux*)
         alias ls='ls --color=always' ;;
 esac
-
