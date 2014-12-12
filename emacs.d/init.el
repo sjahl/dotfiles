@@ -39,7 +39,7 @@
 
 (if window-system
     (progn
-    (load-theme 'junio t)))
+    (load-theme 'granger t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)

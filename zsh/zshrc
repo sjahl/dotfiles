@@ -46,3 +46,7 @@ case ${OSTYPE} in
     linux*)
         alias ls='ls --color=always' ;;
 esac
+
+function settitle() {
+    printf "\033];%s\07\n" "$*"
+}

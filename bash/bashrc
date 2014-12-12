@@ -156,4 +156,4 @@ case ${OSTYPE} in
         ;;  
 esac
 
-export PATH=~/bin:${PATH}:/sbin:/usr/sbin:/usr/local/packer
+#export PATH=~/bin:${PATH}:/sbin:/usr/sbin:/usr/local/packer
