@@ -39,7 +39,7 @@
 
 (if window-system
     (progn
-    (load-theme 'brin t)))
+    (load-theme 'spolsky t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
