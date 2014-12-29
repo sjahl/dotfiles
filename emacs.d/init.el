@@ -2,8 +2,6 @@
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(if (file-exists-p "~/.emacs.d/notmuch-config.el")
-    (load-file "~/.emacs.d/notmuch-config.el"))
 
 ;; markdown!
 (autoload 'markdown-mode "markdown-mode"
@@ -11,13 +9,13 @@
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (tool-bar-mode -1)
-; (electric-pair-mode +1)
 (column-number-mode +1)
 (show-paren-mode +1)
 
-(require 'ido)
- (ido-mode t)
- (setq ido-enable-flex-matching t)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+(setq ido-create-new-buffer 'always)
 
 (require 'copy-line)
 (define-key global-map (kbd "C-c k") 'kill-whole-line)
@@ -47,9 +45,6 @@
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
-;;(setq evil-want-C-u-scroll t)
-;;(evil-mode 1)
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
-(autoload 'notmuch "notmuch" "notmuch mail" t)
 
