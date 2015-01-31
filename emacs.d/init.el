@@ -23,9 +23,8 @@
 
 (define-key global-map (kbd "C-c C-=") 'align-regexp)
 
-(add-to-list 'auto-mode-alist '(".*mutt.*" . message-mode))
-(setq mail-header-separator "")
-(add-hook 'message-mode-hook 'auto-fill-mode)
+;; mutt mail-mode stuff
+(setq auto-mode-alist (append '(("/tmp/mutt.*" . mail-mode)) auto-mode-alist))
 
 (require 'package)
 (add-to-list 'package-archives 
@@ -35,9 +34,9 @@
 	       "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-(if window-system
-    (progn
-    (load-theme 'spolsky t)))
+ (if window-system
+   (progn
+     (load-theme 'sanityinc-tomorrow-night t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -47,4 +46,3 @@
 
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
-
