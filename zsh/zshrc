@@ -13,6 +13,7 @@ setopt inc_append_history autocd extendedglob nomatch notify sharehistory brace_
 
 # keybindings
 bindkey -e
+bindkey \^U backward-kill-line
 
 # aliases
 alias ll='ls -al'
