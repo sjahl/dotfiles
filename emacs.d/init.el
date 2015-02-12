@@ -34,9 +34,9 @@
 	       "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
- ;; (if window-system
- ;;   (progn
- ;;     (load-theme 'sanityinc-tomorrow-night t)))
+ (if window-system
+   (progn
+     (load-theme 'spolsky t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
