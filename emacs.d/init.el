@@ -1,3 +1,4 @@
+
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
@@ -36,7 +37,7 @@
 
  (if window-system
    (progn
-     (load-theme 'monokai t)))
+     (load-theme 'spolsky t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
