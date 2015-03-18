@@ -1,7 +1,6 @@
 autoload -Uz compinit promptinit colors
 compinit
 promptinit
-colors
 
 #PROMPT="%B%n@%m%u %~%{$reset_color%}%B $fg_bold[yellow]%#%{$reset_color%}%b "
 prompt adam1
