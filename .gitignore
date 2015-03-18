@@ -3,3 +3,9 @@ emacs.d/elpa/
 emacs.d/auto-save-list/
 emacs.d/url
 emacs.d/notmuch-config.el
+emacs.d/eshell/
+# editor cruft
+*~
+\#.*\#
+.\#
+emacs.d/session.*
