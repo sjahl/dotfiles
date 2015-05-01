@@ -1,6 +1,7 @@
-autoload -Uz compinit promptinit colors
+autoload -Uz compinit promptinit colors select-word-style
 compinit
 promptinit
+select-word-style bash
 
 #PROMPT="%B%n@%m%u %~%{$reset_color%}%B $fg_bold[yellow]%#%{$reset_color%}%b "
 prompt adam1
