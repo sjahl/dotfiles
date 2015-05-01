@@ -12,6 +12,7 @@
 (tool-bar-mode -1)
 (column-number-mode +1)
 (show-paren-mode +1)
+(electric-indent-mode +1)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
