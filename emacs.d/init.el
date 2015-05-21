@@ -38,7 +38,7 @@
 
  (if window-system
    (progn
-     (load-theme 'monokai t)))
+     (load-theme 'sanityinc-tomorrow-night t)))
 
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
