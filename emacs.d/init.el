@@ -1,5 +1,3 @@
-
-(add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
