@@ -10,7 +10,7 @@
 (tool-bar-mode -1)
 (column-number-mode +1)
 (show-paren-mode +1)
-(electric-indent-mode +1)
+;;(electric-indent-mode +1)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -41,8 +41,7 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(global-set-key (kbd "C-c SPC") 'avy-goto-word-or-subword-1)
 
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
