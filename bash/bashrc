@@ -9,10 +9,10 @@ shopt -s histappend
 #export PS1="[\u@\h \w]\$ " 
 
 #two line prompt
-export PS1='\[\e[1m\]\u@\h\[\e[m\] \[\e[1m\]\w \[\e[1;33m\]\$\[\e[m\] '
 
+export PS1='\[\e[1m\]\u@\h\[\e[32m\] \w\[\e[m\]\n\[\e[1;33m\] \$\[\e[0m\] \[\e[m\]'
 # my old prompts
-#export PS1='\[\e[1m\][\t][\u@\h]\[\e[34m\] \w\[\e[m\]\n\[\e[1;32m\]\$\[\e[0m\] \[\e[m\]'
+#export PS1='\[\e[1m\]\u@\h\[\e[m\] \[\e[1m\]\w \[\e[1;33m\]\$\[\e[m\] '
 #export PS1='\[\e[1;31m\]\h\[\e[0m\]:\[\e[1;34m\]\w \[\e[0m\]\[\e[1;31m\]\u\[\e[0m\]\$ '
 #export PS1='\[\e[1m\][\u@\h \w]\$\[\e[0m\] \[\e[m\]'
 #export PS1='\[\e[1;4m\]\u@\h\[\e[m\] \[\e[1m\]\w\n\$\[\e[m\] '
