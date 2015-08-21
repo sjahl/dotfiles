@@ -51,7 +51,7 @@ alias backup-cull='cyphertitectl cull'
 alias password='openssl rand -base64 14'
 alias pastebitch='curl -F "pastebitch=<-" http://pastebitch.com'
 alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
-alias mutt='mutt -n -F ~/.mutt/notmuchrc'
+#alias mutt='mutt -n -F ~/.mutt/notmuchrc'
 alias pgrep='pgrep -a'
 
 # only apply certain annoying platform specific stuff on the right platforms.
