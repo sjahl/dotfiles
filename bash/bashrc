@@ -21,9 +21,9 @@ export CLICOLOR=1
 export EDITOR=emacs
 export PAGER=less
 export LSCOLORS='ExGxFxdxCxDxDxBxBxExEx'
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-export TERM=xterm-256color
-
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+#export TERM=xterm-256color
+[[ $TMUX = "" ]] && export TERM="xterm-256color"
 
 # Aliases
 alias ll='ls -al'
