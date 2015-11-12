@@ -18,13 +18,23 @@
 ;; mutt mail-mode stuff
 (setq auto-mode-alist (append '(("/tmp/mutt.*" . mail-mode)) auto-mode-alist))
 
+;; tls trust checking
+(setq tls-checktrust 'ask)
+
+(setq tls-program
+      '("gnutls-cli --x509cafile /etc/ssl/certs/ca-certificates.crt -p %p %h"
+	"gnutls-cli --x509cafile /etc/ssl/certs/ca-certificates.crt -p %p %h --protocols ssl3"
+	"openssl s_client -connect %h:%p -CAfile /etc/ssl/certs/ca-certificates.crt -no_ssl2 -ign_eof"))
+
 ;; package archives
 (require 'package)
-(add-to-list 'package-archives 
-	     '("melpa" .
-	       "http://melpa.milkbox.net/packages/")
-	     '("marmalade" .
-	       "http://marmalade-repo.org/packages/"))
+(setq package-archives 
+	     '(("melpa" .
+		"https://melpa.milkbox.net/packages/")
+	       ("marmalade" .
+		"https://marmalade-repo.org/packages/")
+	       ("gnu" .
+		"https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;; (if window-system
@@ -32,7 +42,7 @@
 ;;       (load-theme 'sanityinc-tomorrow-night t)))
 
 ;; colors
-(load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'base16-default-dark t)
 
 ;; keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
