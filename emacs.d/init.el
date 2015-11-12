@@ -37,7 +37,7 @@
 ;;       (load-theme 'sanityinc-tomorrow-night t)))
 
 ;; colors
-(load-theme 'base16-atelierheath-dark t)
+(load-theme 'base16-default-dark t)
 
 ;; keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
