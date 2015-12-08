@@ -77,7 +77,7 @@ case ${OSTYPE} in
     
 # MacOS X returns strings like: darwin
     darwin*)
-    alias ls="ls -G"
+    alias ls="ls -GF"
     # Bash completion
     if [ -f `brew --prefix`/etc/bash_completion ]; then
         . `brew --prefix`/etc/bash_completion
