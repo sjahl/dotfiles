@@ -54,3 +54,7 @@
 ;; get path from shell
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
+;; jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
