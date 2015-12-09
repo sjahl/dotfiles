@@ -68,6 +68,7 @@ alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 #alias mutt='mutt -n -F ~/.mutt/notmuchrc'
 alias pgrep='pgrep -a'
 alias orch='cd ~/git/orchestration && workon orchestration'
+alias resea='cd ~/git/research_env && workon research_env'
 
 # only apply certain annoying platform specific stuff on the right platforms.
 case ${OSTYPE} in
