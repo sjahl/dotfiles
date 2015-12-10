@@ -33,12 +33,9 @@
 		"https://elpa.gnu.org/packages/")))
 (package-initialize)
 
-;; (if window-system
-;;     (progn
-;;       (load-theme 'sanityinc-tomorrow-night t)))
-
-;; colors
-(load-theme 'base16-ocean-dark t)
+(if window-system
+    (progn
+      (load-theme 'base16-ocean-dark t)))
 
 ;; keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
