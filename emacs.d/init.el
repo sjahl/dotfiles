@@ -6,6 +6,7 @@
 (tool-bar-mode -1)
 (column-number-mode t)
 (show-paren-mode t)
+(global-linum-mode t)
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
 
@@ -37,7 +38,7 @@
 ;;       (load-theme 'sanityinc-tomorrow-night t)))
 
 ;; colors
-(load-theme 'base16-default-dark t)
+(load-theme 'base16-ocean-dark t)
 
 ;; keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
