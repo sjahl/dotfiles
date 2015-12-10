@@ -89,3 +89,25 @@ case ${OSTYPE} in
     fi
         ;;  
 esac
+
+complete -C aws_completer aws
+
+awsenv ()
+{
+    environment=$1;
+    if [[ -z $environment ]]; then
+        env | grep --color=auto AWS;
+    else
+        if [[ $environment == 'clear' ]]; then
+            unset AWS_PROFILE;
+            unset AWS_DEFAULT_PROFILE;
+        else
+            export AWS_PROFILE=$environment;
+            export AWS_DEFAULT_PROFILE=$environment;
+            env | grep --color=auto AWS;
+        fi;
+    fi
+}
+
+export AWS_PROFILE=Production-old
+export AWS_DEFAULT_PROFILE=Production-old
