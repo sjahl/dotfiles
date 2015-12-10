@@ -44,8 +44,7 @@
 (global-set-key (kbd "M--") 'er/expand-region)
 (global-set-key (kbd "C-c SPC") 'avy-goto-char)
 (require 'copy-line)
-(define-key global-map (kbd "C-c k") 'kill-whole-line)
-(define-key global-map (kbd "C-c C-k") 'copy-line)
+(define-key global-map (kbd "C-c y") 'copy-line)
 
 ;; flymake
 (require 'flymake-python-pyflakes)
