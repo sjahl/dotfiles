@@ -58,3 +58,9 @@
 
 ;; cmd-t
 (global-set-key (kbd "M-t") 'helm-cmd-t)
+
+;; virtualenviness
+(setq venv-location "~/.virtualenvs")
+;; https://github.com/porterjamesj/virtualenvwrapper.el/blob/master
+(setq-default mode-line-format (cons '(:exec venv-current-name)
+                                     mode-line-format))
