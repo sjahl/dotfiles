@@ -4,6 +4,7 @@
 
 ;; interface
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
 (column-number-mode t)
 (show-paren-mode t)
 (setq inhibit-startup-message t)
@@ -59,8 +60,3 @@
 ;; cmd-t
 (global-set-key (kbd "M-t") 'helm-cmd-t)
 
-;; virtualenviness
-(setq venv-location "~/.virtualenvs")
-;; https://github.com/porterjamesj/virtualenvwrapper.el/blob/master
-(setq-default mode-line-format (cons '(:exec venv-current-name)
-                                     mode-line-format))
