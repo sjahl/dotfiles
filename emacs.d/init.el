@@ -11,6 +11,10 @@
 (setq inhibit-splash-screen t)
 (setq-default show-trailing-whitespace t)
 
+(require 'whitespace)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+(global-whitespace-mode t)
+
 ;; ido
 (ido-mode t)
 (setq ido-enable-flex-matching t)
