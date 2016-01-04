@@ -9,6 +9,7 @@
 (show-paren-mode t)
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
+(setq show-trailing-whitespace t)
 
 ;; ido
 (ido-mode t)
