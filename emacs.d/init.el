@@ -39,11 +39,14 @@
       (load-theme 'base16-ocean-dark t)
       (global-linum-mode t)))
 
-;; keybindings
+;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
 (global-set-key (kbd "C-c SPC") 'avy-goto-char)
 (require 'copy-line)
 (define-key global-map (kbd "C-c y") 'copy-line)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; flymake
 (require 'flymake-python-pyflakes)
