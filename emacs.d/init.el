@@ -11,10 +11,6 @@
 (setq inhibit-splash-screen t)
 (setq-default show-trailing-whitespace t)
 
-(require 'whitespace)
-(setq whitespace-style '(face empty tabs lines-tail trailing))
-(global-whitespace-mode t)
-
 ;; ido
 (ido-mode t)
 (setq ido-enable-flex-matching t)
@@ -29,7 +25,7 @@
 
 ;; package archives
 (require 'package)
-(setq package-archives 
+(setq package-archives
 	     '(("melpa" .
 		"https://melpa.milkbox.net/packages/")
 	       ;; ("marmalade" .
@@ -64,4 +60,3 @@
 
 ;; cmd-t
 (global-set-key (kbd "M-t") 'helm-cmd-t)
-
