@@ -36,7 +36,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-ocean-dark t)
+      (load-theme 'base16-embers-dark t)
       (global-linum-mode t)))
 
 ;; general keybindings
