@@ -53,13 +53,6 @@
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (setq flymake-python-pyflakes-executable "/usr/local/bin/flake8")
 
-;; fci
-(add-hook 'python-mode-hook (lambda ()
-			      (fci-mode t)
-			      (setq fci-mode-column 80)
-			      ))
-
-
 ;; get path from shell
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
