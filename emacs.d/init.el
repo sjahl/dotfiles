@@ -56,7 +56,7 @@
 ;; fci
 (add-hook 'python-mode-hook (lambda ()
 			      (fci-mode t)
-			      (setq fci-mode-column "80")
+			      (setq fci-mode-column 80)
 			      ))
 
 
