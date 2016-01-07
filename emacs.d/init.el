@@ -36,7 +36,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-embers-dark t)
+      (load-theme 'base16-ocean-dark t)
       (global-linum-mode t)))
 
 ;; general keybindings
@@ -52,6 +52,13 @@
 (require 'flymake-python-pyflakes)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (setq flymake-python-pyflakes-executable "/usr/local/bin/flake8")
+
+;; fci
+(add-hook 'python-mode-hook (lambda ()
+			      (fci-mode t)
+			      (setq fci-mode-column "80")
+			      ))
+
 
 ;; get path from shell
 (when (memq window-system '(mac ns))
