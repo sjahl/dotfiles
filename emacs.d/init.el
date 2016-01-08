@@ -11,6 +11,8 @@
 (setq inhibit-splash-screen t)
 (setq-default show-trailing-whitespace t)
 
+;; behavior
+(setq require-final-newline t)
 ;; ido
 (ido-mode t)
 (setq ido-enable-flex-matching t)
