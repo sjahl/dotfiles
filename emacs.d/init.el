@@ -13,6 +13,8 @@
 
 ;; behavior
 (setq require-final-newline t)
+(setq temporary-file-directory "~/.emacs.d/tmp/")
+
 ;; ido
 (ido-mode t)
 (setq ido-enable-flex-matching t)
