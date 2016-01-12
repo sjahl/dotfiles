@@ -53,11 +53,11 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; flymake
-;; (require 'flymake-python-pyflakes)
-;; (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
-;; (setq flymake-python-pyflakes-executable "/usr/local/bin/flake8")
+(require 'flymake-python-pyflakes)
+(add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
+(setq flymake-python-pyflakes-executable "/usr/local/bin/flake8")
 
-(add-hook 'python-mode-hook 'flycheck-mode)
+
 ;; get path from shell
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
