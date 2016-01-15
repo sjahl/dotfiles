@@ -1,7 +1,3 @@
-;; load paths
-(add-to-list 'load-path "~/.emacs.d/plugins/")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-
 ;; interface
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -21,9 +17,6 @@
 (setq ido-everywhere t)
 (setq ido-create-new-buffer 'always)
 
-;; mutt mail-mode stuff
-(setq auto-mode-alist (append '(("/tmp/mutt.*" . mail-mode)) auto-mode-alist))
-
 ;; tls trust checking
 (setq tls-checktrust 'ask)
 
@@ -32,22 +25,17 @@
 (setq package-archives
 	     '(("melpa" .
 		"https://melpa.milkbox.net/packages/")
-	       ;; ("marmalade" .
-	       ;; 	"https://marmalade-repo.org/packages/")
 	       ("gnu" .
 		"https://elpa.gnu.org/packages/")))
 (package-initialize)
 
 (if window-system
     (progn
-      (load-theme 'base16-ateliersulphurpool-dark t)
-      (global-linum-mode t)))
+      (load-theme 'base16-ateliersulphurpool-dark t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
 (global-set-key (kbd "C-c SPC") 'avy-goto-char)
-(require 'copy-line)
-(define-key global-map (kbd "C-c y") 'copy-line)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
