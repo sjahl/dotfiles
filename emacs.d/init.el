@@ -31,7 +31,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-ateliersulphurpool-dark t)))
+      (load-theme 'atom-one-dark t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
