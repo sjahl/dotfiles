@@ -31,7 +31,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-tomorrow-dark t)))
+      (load-theme 'base16-twilight-dark t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
