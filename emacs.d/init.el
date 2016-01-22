@@ -21,13 +21,7 @@
 (setq tls-checktrust 'ask)
 
 ;; package archives
-(require 'package)
-(setq package-archives
-	     '(("melpa" .
-		"https://melpa.milkbox.net/packages/")
-	       ("gnu" .
-		"https://elpa.gnu.org/packages/")))
-(package-initialize)
+(load "~/.emacs.d/package-setup.el")
 
 (if window-system
     (progn
