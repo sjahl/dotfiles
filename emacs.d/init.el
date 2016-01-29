@@ -25,7 +25,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-twilight-dark t)))
+      (load-theme 'planet t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
