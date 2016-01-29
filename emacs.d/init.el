@@ -20,7 +20,7 @@
 ;; tls trust checking
 (setq tls-checktrust 'ask)
 
-;; package archives
+;; package setup and installation
 (load "~/.emacs.d/package-setup.el")
 
 (if window-system
