@@ -3,6 +3,7 @@
 (scroll-bar-mode -1)
 (column-number-mode t)
 (show-paren-mode t)
+(global-linum-mode t)
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
 (setq-default show-trailing-whitespace t)
@@ -25,7 +26,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-twilight-dark t)))
+      (load-theme 'base16-solarized-dark t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
