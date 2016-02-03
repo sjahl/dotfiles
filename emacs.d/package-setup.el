@@ -7,6 +7,7 @@
 (package-initialize)
 
 (setq package-list '(avy
+		     ample-theme
 		     base16-theme
 		     color-theme-sanityinc-tomorrow
 		     darktooth-theme
@@ -14,11 +15,8 @@
 		     expand-region
 		     fill-column-indicator
 		     flymake-python-pyflakes
-		     helm
-		     helm-cmd-t
-		     helm-git-grep
-		     helm-ls-git
 		     jedi
+		     json-mode
 		     markdown-mode
 		     multiple-cursors
 		     nyan-mode
