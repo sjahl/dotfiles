@@ -3,7 +3,6 @@
 (scroll-bar-mode -1)
 (column-number-mode t)
 (show-paren-mode t)
-(global-linum-mode t)
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
 (setq-default show-trailing-whitespace t)
