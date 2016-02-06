@@ -1,3 +1,8 @@
+;; ergoemacs-mode
+(setq ergoemacs-theme nil)
+(setq ergoemacs-keyboard-layout "us")
+(ergoemacs-mode 1)
+
 ;; interface
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
