@@ -1,8 +1,3 @@
-;; ergoemacs-mode
-(setq ergoemacs-theme nil)
-(setq ergoemacs-keyboard-layout "us")
-(ergoemacs-mode 1)
-
 ;; interface
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -27,6 +22,11 @@
 
 ;; package setup and installation
 (load "~/.emacs.d/package-setup.el")
+
+;; ergoemacs-mode
+(setq ergoemacs-theme nil)
+(setq ergoemacs-keyboard-layout "us")
+(ergoemacs-mode 1)
 
 (if window-system
     (progn
