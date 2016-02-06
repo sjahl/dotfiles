@@ -23,11 +23,6 @@
 ;; package setup and installation
 (load "~/.emacs.d/package-setup.el")
 
-;; ergoemacs-mode
-(setq ergoemacs-theme nil)
-(setq ergoemacs-keyboard-layout "us")
-(ergoemacs-mode 1)
-
 (if window-system
     (progn
       (load-theme 'ample t)))
