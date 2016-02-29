@@ -1,15 +1,25 @@
-autoload -Uz compinit promptinit colors select-word-style
+autoload -Uz compinit promptinit colors select-word-style vcs_info
 compinit
 promptinit
+colors
 select-word-style bash
 
-#PROMPT="%B%n@%m%u %~%{$reset_color%}%B $fg_bold[yellow]%#%{$reset_color%}%b "
-prompt adam1
+zstyle ':vcs_info:*' enable git
+precmd() {
+    vcs_info
+}
 
 HISTFILE=~/.zhistfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt inc_append_history autocd extendedglob nomatch notify sharehistory brace_ccl
+setopt inc_append_history autocd extendedglob nomatch notify sharehistory brace_ccl prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:*'    formats "" "%f%a %F{3}%m%u%c %f%b"
+zstyle ':vcs_info:*'    nvcsformats   "%f[%n@%m %1~]$ " ""
+zstyle ':vcs_info:*'    actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+
+PROMPT="[%{$fg[white]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%20<...<%~%<<%{$reset_color%}]%(!.#.$) "
+RPROMPT='[${vcs_info_msg_1_}]'
 
 # keybindings
 bindkey -e
@@ -51,3 +61,84 @@ esac
 function settitle() {
     printf "\033];%s\07\n" "$*"
 }
+
+source /usr/local/share/zsh/site-functions/_aws
+
+awsenv ()
+{
+    environment=$1;
+    if [[ -z $environment ]]; then
+        env | grep --color=auto AWS;
+    else
+        if [[ $environment == 'clear' ]]; then
+            unset AWS_PROFILE;
+            unset AWS_DEFAULT_PROFILE;
+        else
+            export AWS_PROFILE=$environment;
+            export AWS_DEFAULT_PROFILE=$environment;
+            env | grep --color=auto AWS;
+        fi;
+    fi
+}
+
+export AWS_PROFILE=default
+export AWS_DEFAULT_PROFILE=default
+
+iam_keys ()
+{
+    for u in $(aws iam list-users --query Users[].UserName --output text);
+    do
+        cmd="aws iam list-access-keys --user-name $u --query 'AccessKeyMetadata[].[UserName,AccessKeyId]' --output text";
+        eval $cmd;
+    done
+}
+
+quantoec2 ()
+{
+    if [[ -z $1 && -z $2 ]]; then
+        echo "Usage: quantoec2 <environment(development|staging|production)> <group/tag(cassandra|elasticsearch|tag_Name_Foo)> [command]";
+    else
+        if [[ -z $3 ]]; then
+            ansible -i ${HOME}/git/quantopian/orchestration/ansible/environments/${1} ${2} --list-hosts;
+        else
+            ansible -i ${HOME}/git/quantopian/orchestration/ansible/environments/${1} ${2} -m shell -a "${3}";
+        fi;
+    fi
+}
+
+quantotags ()
+{
+    if [[ -z $1 && -z $2 ]]; then
+        echo "Usage: quantotags <environment(Staging|Production)> <deployment(Consul,Databazaar,etc)>";
+    else
+        aws ec2 describe-instances --filters "Name=tag:Deployment,Values=$2" "Name=tag:Environment,Values=$1" --query "Reservations[].Instances[]";
+    fi
+}
+
+mfa ()
+{
+    case $1 in
+        -a)
+            /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli show
+        ;;
+        -d)
+            shift;
+            /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli delete $1
+        ;;
+        -p)
+            shift;
+            /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli put $@
+        ;;
+        -h)
+            echo "Usage: mfa [-a: show all codes] [-d: delete 2fa secret] [-p: store new secret] [site name]"
+        ;;
+        *)
+            if [[ -z $1 ]]; then
+                usage-mfa;
+            else
+                /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli show $1 | copy;
+            fi
+        ;;
+    esac
+}
+
