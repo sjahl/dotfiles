@@ -18,8 +18,9 @@ zstyle ':vcs_info:*'    formats "" "%f%a %F{3}%m%u%c %f%b"
 zstyle ':vcs_info:*'    nvcsformats   "%f[%n@%m %1~]$ " ""
 zstyle ':vcs_info:*'    actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 
-PROMPT="[%{$fg[white]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%20<...<%~%<<%{$reset_color%}]%(!.#.$) "
-RPROMPT='[${vcs_info_msg_1_}]'
+PROMPT="[%*][%{$fg[white]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%20<...<%~%<<%{$reset_color%}]
+ %(!.#.$) "
+RPROMPT='${vcs_info_msg_1_}'
 
 # keybindings
 bindkey -e
@@ -48,12 +49,12 @@ alias backup-inc='cyphertite -I /home/$USER/.cyphertite/dirs -cvRf home_1.ct /ho
 alias backup-zero='cyphertite -I /home/$USER/.cyphertite/dirs -0vRf home_1.ct /home/$USER'
 alias backup-cull='cyphertitectl cull'
 alias ssh-nokerberos='ssh -o GSSAPIAuthentication=no -o GSSAPIKeyExchange=no -o GSSAPIDelegateCredentials=no -o GSSAPITrustDNS=no'
-alias workmutt='mutt -n -F ~/.mutt/notmuchrc'
 alias pgrep='pgrep -a'
+alias orch='workon orchestration && cd ~/git/quantopian/orchestration'
 
 case ${OSTYPE} in
     darwin*)
-        alias ls='ls -G' ;;
+        alias ls='ls -GF' ;;
     linux*)
         alias ls='ls --color=always' ;;
 esac
@@ -61,6 +62,9 @@ esac
 function settitle() {
     printf "\033];%s\07\n" "$*"
 }
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
 
 source /usr/local/share/zsh/site-functions/_aws
 
@@ -115,30 +119,7 @@ quantotags ()
     fi
 }
 
-mfa ()
-{
-    case $1 in
-        -a)
-            /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli show
-        ;;
-        -d)
-            shift;
-            /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli delete $1
-        ;;
-        -p)
-            shift;
-            /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli put $@
-        ;;
-        -h)
-            echo "Usage: mfa [-a: show all codes] [-d: delete 2fa secret] [-p: store new secret] [site name]"
-        ;;
-        *)
-            if [[ -z $1 ]]; then
-                usage-mfa;
-            else
-                /Applications/Yubico\ Authenticator.app/Contents/MacOS/yubioath-cli show $1 | copy;
-            fi
-        ;;
-    esac
-}
-
+alias cfs="aws cloudformation describe-stacks --query 'Stacks[].StackName'"
+alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[].AutoScalingGroupName'"
+alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
+alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*\)\".*/\1/' | sort | uniq"
