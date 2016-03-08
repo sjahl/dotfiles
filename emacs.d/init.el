@@ -10,6 +10,10 @@
 ;; behavior
 (setq require-final-newline t)
 (setq temporary-file-directory "~/.emacs.d/tmp/")
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; ido
 (ido-mode t)
