@@ -29,7 +29,7 @@
 
 (if window-system
     (progn
-      (load-theme 'brin t)))
+      (load-theme 'sanityinc-tomorrow-night t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
