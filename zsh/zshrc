@@ -12,7 +12,7 @@ precmd() {
 HISTFILE=~/.zhistfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt inc_append_history autocd extendedglob nomatch notify sharehistory brace_ccl prompt_subst
+setopt inc_append_history histignorespace autocd extendedglob nomatch notify sharehistory brace_ccl prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:*'    formats "" "%f%a %F{3}%m%u%c %f%b"
 zstyle ':vcs_info:*'    nvcsformats   "%f[%n@%m %1~]$ " ""
@@ -112,3 +112,6 @@ alias cfs="aws cloudformation describe-stacks --query 'Stacks[].StackName'"
 alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[].AutoScalingGroupName'"
 alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
 alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*\)\".*/\1/' | sort | uniq"
+
+# rbenv
+eval "$(rbenv init -)"
