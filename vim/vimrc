@@ -5,7 +5,8 @@ set smartindent
 set ttyfast
 set et
 set nobackup
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+set listchars=tab:▸\ ,eol:¬
+set list
 set comments=b:#,:%,fb:-,n:>,n:)
 set noerrorbells
 set ignorecase
@@ -56,8 +57,6 @@ endif
 let mapleader = ","
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <F3> :set paste!<CR>
-nnoremap <leader>c<space> :NERDCommenter
-nnoremap <F4> :NERDTreeToggle<CR>
 nnoremap <F5> :set list!<CR>
 " sort visually hilighted lines
 map <F9> :sort<CR>
