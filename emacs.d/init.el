@@ -29,7 +29,7 @@
 
 (if window-system
     (progn
-      (load-theme 'railscasts t)))
+      (load-theme 'brin t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
