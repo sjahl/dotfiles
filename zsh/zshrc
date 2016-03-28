@@ -44,6 +44,7 @@ alias ta='tmux a'
 alias tmux="TERM=screen-256color-bce tmux"
 alias pgrep='pgrep -a'
 alias orch='workon orchestration && cd ~/git/quantopian/orchestration'
+alias vim='emacs -nw'
 
 case ${OSTYPE} in
     darwin*)
