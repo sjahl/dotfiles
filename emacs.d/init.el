@@ -29,7 +29,8 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-eighties-dark t)))
+      (load-theme 'base16-eighties-dark t)
+      (global-linum-mode t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
