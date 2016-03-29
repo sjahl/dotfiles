@@ -114,5 +114,14 @@ alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGro
 alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
 alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*\)\".*/\1/' | sort | uniq"
 
+watchec2 ()
+{
+    if [[ -z $1 ]]; then
+        echo "Usage: watchec2 <fqdn>";
+    else
+        watch -n 3 nc -vz $1 22;
+    fi
+}
+
 # rbenv
 eval "$(rbenv init -)"
