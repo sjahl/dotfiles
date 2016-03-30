@@ -45,6 +45,10 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias pgrep='pgrep -a'
 alias orch='workon orchestration && cd ~/git/quantopian/orchestration'
 alias vim='emacs -nw'
+alias cfs="aws cloudformation describe-stacks --query 'Stacks[].StackName'"
+alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[].AutoScalingGroupName'"
+alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
+alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*"
 
 case ${OSTYPE} in
     darwin*)
@@ -108,11 +112,6 @@ quantotags ()
         aws ec2 describe-instances --filters "Name=tag:Deployment,Values=$2" "Name=tag:Environment,Values=$1" --query "Reservations[].Instances[]";
     fi
 }
-
-alias cfs="aws cloudformation describe-stacks --query 'Stacks[].StackName'"
-alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[].AutoScalingGroupName'"
-alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
-alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*\)\".*/\1/' | sort | uniq"
 
 watchec2 ()
 {
