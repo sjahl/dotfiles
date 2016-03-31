@@ -29,8 +29,7 @@
 
 (if window-system
     (progn
-      (load-theme 'spacemacs-dark t)
-      (global-linum-mode t)))
+      (load-theme 'spacemacs-dark t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
