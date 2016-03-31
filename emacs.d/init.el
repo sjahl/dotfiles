@@ -29,7 +29,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-eighties-dark t)
+      (load-theme 'spacemacs-dark t)
       (global-linum-mode t)))
 
 ;; general keybindings
