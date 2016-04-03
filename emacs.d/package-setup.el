@@ -1,7 +1,7 @@
 (require 'package)
 (setq package-archives
 	     '(("melpa" .
-		"https://melpa.milkbox.net/packages/")
+		"https://melpa.org/packages/")
 	       ("gnu" .
 		"https://elpa.gnu.org/packages/")))
 (package-initialize)
