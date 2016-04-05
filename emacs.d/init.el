@@ -48,8 +48,8 @@
   (exec-path-from-shell-initialize))
 
 ;; jedi
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:complete-on-dot t)
 
 ;; cmd-t
 (global-set-key (kbd "M-t") 'helm-cmd-t)
