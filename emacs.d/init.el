@@ -29,7 +29,7 @@
 
 (if window-system
     (progn
-      (load-theme 'spacemacs-dark t)))
+      (load-theme 'darktooth t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
