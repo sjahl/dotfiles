@@ -29,7 +29,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-railscasts-dark)))
+      (load-theme 'base16-railscasts-dark t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
