@@ -29,7 +29,8 @@
 
 (if window-system
     (progn
-      (load-theme 'darktooth t)))
+      (load-theme 'darktooth t)
+      (global-linum-mode t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
