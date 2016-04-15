@@ -1,8 +1,9 @@
-autoload -Uz compinit promptinit colors select-word-style vcs_info
+autoload -Uz compinit promptinit colors select-word-style vcs_info edit-command-line
 compinit
 promptinit
 colors
 select-word-style bash
+zle -N edit-command-line
 
 zstyle ':vcs_info:*' enable git
 precmd() {
@@ -25,6 +26,7 @@ RPROMPT='${vcs_info_msg_1_}'
 # keybindings
 bindkey -e
 bindkey \^U backward-kill-line
+bindkey "^X^E" edit-command-line
 
 # aliases
 alias ll='ls -al'
@@ -52,7 +54,8 @@ alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\"
 
 case ${OSTYPE} in
     darwin*)
-        alias ls='ls -GF' ;;
+        alias ls='ls -GF'
+	source /usr/local/share/zsh/site-functions/_aws ;;
     linux*)
         alias ls='ls --color=always' ;;
 esac
@@ -60,7 +63,7 @@ esac
 export WORKON_HOME=~/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
-source /usr/local/share/zsh/site-functions/_aws
+
 
 awsenv ()
 {
