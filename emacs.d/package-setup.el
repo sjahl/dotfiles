@@ -22,6 +22,7 @@
 		     nyan-mode
 		     python-mode
 		     spacemacs-theme
+		     virtualenvwrapper
 		     yaml-mode))
 
 (or (file-exists-p package-user-dir)

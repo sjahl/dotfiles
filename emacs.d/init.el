@@ -14,12 +14,14 @@
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+(put 'downcase-region 'disabled nil)
 
 ;; ido
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (setq ido-create-new-buffer 'always)
+
 
 ;; tls trust checking
 (setq tls-checktrust 'ask)
@@ -41,11 +43,15 @@
 ;; flymake
 (require 'flymake-python-pyflakes)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
-(setq flymake-python-pyflakes-executable "/usr/local/bin/flake8")
+(setq flymake-python-pyflakes-executable "flake8")
 
+(require 'virtualenvwrapper)
+(setq venv-location "~/.virtualenvs")
+(setq-default mode-line-format (cons '(:exec venv-current-name)
+					     mode-line-format))
 ;; get path from shell
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+;; (when (memq window-system '(mac ns))
+;;   (exec-path-from-shell-initialize))
 
 ;; jedi
 ;; (add-hook 'python-mode-hook 'jedi:setup)
