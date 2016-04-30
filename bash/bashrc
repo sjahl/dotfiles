@@ -75,6 +75,10 @@ case ${OSTYPE} in
       if [ -f /etc/bash_completion ]; then
           . /etc/bash_completion
       fi
+      if [ -d "$HOME/bin" ] ; then
+              PATH="$HOME/bin:$HOME/.rbenv/bin:$PATH"
+      fi
+
         ;;
 
 # MacOS X returns strings like: darwin
