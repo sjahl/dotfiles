@@ -156,3 +156,6 @@ watchec2 ()
 
 # rbenv
 eval "$(rbenv init -)"
+## Quantopian Orchestration Setup
+export PATH=/Users/sjahl/git/quantopian/orchestration/credentials_database/bin:/Users/sjahl/.virtualenvs/orchestration/bin:/Users/sjahl/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin
+source /Users/sjahl/git/quantopian/orchestration/credentials_database/etc/bash_completion
