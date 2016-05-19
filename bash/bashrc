@@ -66,6 +66,7 @@ alias cfs="aws cloudformation describe-stacks --query 'Stacks[].StackName'"
 alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[].AutoScalingGroupName'"
 alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
 alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*"
+alias cg='cd `git rev-parse --show-toplevel`'
 
 # only apply certain annoying platform specific stuff on the right platforms.
 case ${OSTYPE} in
@@ -139,9 +140,16 @@ quantoec2 ()
 quantotags ()
 {
     if [[ -z $1 && -z $2 ]]; then
-        echo "Usage: quantotags <environment(Staging|Production)> <deployment(Consul,Databazaar,etc)>";
+        echo "Usage: quantotags <environment(Staging|Production)> <deployment(Consul,Databazaar,etc)> [--latest]";
     else
-        aws ec2 describe-instances --filters "Name=tag:Deployment,Values=$2" "Name=tag:Environment,Values=$1" --query "Reservations[].Instances[]";
+        instances=$(aws ec2 describe-instances --filters "Name=tag:Deployment,Values=$2" "Name=tag:Environment,Values=$1" --query Reservations[].Instances[]);
+        if [[ -z $3 ]]; then
+            echo "$instances" | jq '.[] | {id: .InstanceId, fqdn: .PublicDnsName, launched: .LaunchTime, az: .Placement.AvailabilityZone, state: .State.Name}';
+        else
+            if [[ $3 == '--latest' ]]; then
+                echo "not done";
+            fi;
+        fi;
     fi
 }
 
@@ -154,8 +162,4 @@ watchec2 ()
     fi
 }
 
-# rbenv
-eval "$(rbenv init -)"
-## Quantopian Orchestration Setup
-export PATH=/Users/sjahl/git/quantopian/orchestration/credentials_database/bin:/Users/sjahl/.virtualenvs/orchestration/bin:/Users/sjahl/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin
-source /Users/sjahl/git/quantopian/orchestration/credentials_database/etc/bash_completion
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
