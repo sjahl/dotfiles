@@ -8,13 +8,13 @@
 (setq-default show-trailing-whitespace t)
 
 ;; behavior
-(setq require-final-newline t)
 (setq temporary-file-directory "~/.emacs.d/tmp/")
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 (put 'downcase-region 'disabled nil)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; ido
 (ido-mode t)
@@ -31,7 +31,7 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-tomorrow-dark t)))
+      (load-theme 'afterglow t)))
 
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
