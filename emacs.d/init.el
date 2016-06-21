@@ -3,6 +3,7 @@
 (scroll-bar-mode -1)
 (column-number-mode t)
 (show-paren-mode t)
+(electric-pair-mode t)
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
 (setq-default show-trailing-whitespace t)
@@ -15,6 +16,7 @@
       `((".*" ,temporary-file-directory t)))
 (put 'downcase-region 'disabled nil)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(add-to-list 'auto-mode-alist '(".j2$" . jinja2-mode))
 
 ;; ido
 (ido-mode t)
@@ -31,8 +33,11 @@
 
 (if window-system
     (progn
-      (load-theme 'afterglow t)))
+      (load-theme 'base16-default-dark t)))
 
+(custom-set-faces
+ '(vertical-border ((t (:foreground "#5a5a5a"))))
+ )
 ;; general keybindings
 (global-set-key (kbd "M--") 'er/expand-region)
 (global-set-key (kbd "C-c SPC") 'avy-goto-char)
@@ -44,11 +49,12 @@
 (require 'flymake-python-pyflakes)
 (add-hook 'python-mode-hook 'flymake-python-pyflakes-load)
 (setq flymake-python-pyflakes-executable "flake8")
+(add-hook 'yaml-mode-hook 'flymake-yaml-load)
 
 (require 'virtualenvwrapper)
 (setq venv-location "~/.virtualenvs")
-(setq-default mode-line-format (cons '(:exec venv-current-name)
-					     mode-line-format))
+;; (setq-default mode-line-format (cons '(:exec venv-current-name)
+;;					     mode-line-format))
 ;; get path from shell
 ;; (when (memq window-system '(mac ns))
 ;;   (exec-path-from-shell-initialize))
@@ -59,3 +65,6 @@
 
 ;; cmd-t
 (global-set-key (kbd "M-t") 'helm-cmd-t)
+
+;; niceties for hilighting numbers
+(add-hook 'prog-mode-hook 'highlight-numbers-mode)
