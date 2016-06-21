@@ -15,6 +15,7 @@
 		     expand-region
 		     fill-column-indicator
 		     flymake-python-pyflakes
+		     highlight-numbers
 		     jedi
 		     json-mode
 		     markdown-mode

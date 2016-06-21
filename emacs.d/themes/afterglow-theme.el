@@ -1,30 +1,40 @@
 ;;; afterglow-theme.el --- Emacs theme with a dark background.
 
-;; Copyright (C) 2014 , me
+;; Copyright (C) 2016 , Stephen Jahl
 
-;; Author: me
+;; Author: Stephen Jahl
 ;;
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24"))
 ;; Created with emacs-theme-generator, https://github.com/mswift42/theme-creator.
 
+;; The MIT License (MIT)
 
-;; This program is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
+;; Permission is hereby granted, free of charge, to any person
+;; obtaining a copy of this software and associated documentation
+;; files (the "Software"), to deal in the Software without
+;; restriction, including without limitation the rights to use, copy,
+;; modify, merge, publish, distribute, sublicense, and/or sell copies
+;; of the Software, and to permit persons to whom the Software is
+;; furnished to do so, subject to the following conditions:
 
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-;; GNU General Public License for more details.
+;; The above copyright notice and this permission notice shall be
+;; included in all copies or substantial portions of the Software.
 
-;; You should have received a copy of the GNU General Public License
-;; along with this program. If not, see <http://www.gnu.org/licenses/>.
+;; THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+;; EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+;; MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+;; NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+;; BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+;; ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+;; CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+;; SOFTWARE.
 
 ;; This file is not part of Emacs.
 
 ;;; Commentary:
+
+;; Based on the Afterglow theme for sublime https://github.com/YabataDesign/afterglow-theme
 
 ;;; Code:
 
@@ -42,13 +52,14 @@
        (key3 "#b46a2e")
        (builtin "#6c99bb")
        (keyword "#CC7833")
-       (const   "#b4c973")
+       (const   "#6c99bb")
        (comment "#797979")
        (func    "#FFC66D")
        (str     "#b4c973")
        (type    "#6c99bb")
        (var     "#D0D0FF")
-       (warning "#e5b567"))
+       (cursor  "#e5b567")
+       (warning "#a1617a"))
    (custom-theme-set-faces
    'afterglow
         `(default ((,class (:background ,bg1 :foreground ,fg1))))
@@ -68,12 +79,12 @@
         `(highlight ((,class (:foreground ,fg3 :background ,bg3))))
 	`(hl-line ((,class (:background  ,bg2))))
 	`(fringe ((,class (:background ,bg2 :foreground ,fg4))))
-	`(cursor ((,class (:background ,warning))))
-        `(show-paren-match-face ((,class (:background ,warning))))
+	`(cursor ((,class (:background ,cursor))))
+        `(show-paren-match-face ((,class (:background ,keyword :foreground ,cursor))))
         `(isearch ((,class (:bold t :foreground ,warning :background ,bg3))))
-        `(mode-line ((,class (:box (:line-width 1 :color nil) :bold nil :foreground ,fg4 :background ,bg2))))
-        `(mode-line-inactive ((,class (:box (:line-width 1 :color nil :style pressed-button) :foreground ,key3 :background ,bg1 :weight normal))))
-        `(mode-line-buffer-id ((,class (:bold t :foreground ,func :background nil))))
+        `(mode-line ((,class (:box (:line-width 1 :color ,fg4) :bold nil :foreground ,fg4 :background ,bg2))))
+	`(mode-line-inactive ((,class (:box (:line-width 1 :color ,bg2) :foreground ,bg2 :background ,bg1 :weight normal))))
+        `(mode-line-buffer-id ((,class (:foreground ,fg1 :background nil))))
 	`(mode-line-highlight ((,class (:foreground ,keyword :box nil :weight bold))))
         `(mode-line-emphasis ((,class (:foreground ,fg1))))
 	`(vertical-border ((,class (:foreground ,bg4))))
