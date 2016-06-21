@@ -67,6 +67,7 @@ alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGro
 alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
 alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*"
 alias cg='cd `git rev-parse --show-toplevel`'
+alias timevmstat="vmstat -S M 3 | awk '{now=strftime(\"%Y-%m-%d %T \"); print now $0}'"
 
 # only apply certain annoying platform specific stuff on the right platforms.
 case ${OSTYPE} in
@@ -159,6 +160,32 @@ watchec2 ()
         echo "Usage: watchec2 <fqdn>";
     else
         watch -n 3 nc -vz $1 22;
+    fi
+}
+
+export VAULT_TOKENS_PATH=~/Private/vault/tokens
+vault_env ()
+{
+    environment=$1;
+    if [[ -z $environment ]]; then
+        if [[ -n $VAULT_ADDR || -n $VAULT_TOKEN ]]; then
+            echo $VAULT_ADDR;
+            [[ -n $VAULT_TOKEN ]] && echo "VAULT_TOKEN is set.";
+        else
+            echo "Vault is not configured in your environment";
+        fi;
+    else
+        if [[ $environment == 'clear' ]]; then
+            unset VAULT_ADDR;
+            unset VAULT_TOKEN;
+            echo "unset VAULT_ADDR and VAULT_TOKEN";
+        else
+            export VAULT_ADDR=https://consul.$environment.int.dynoquant.com:8200;
+            VAULT_TOKEN_FILE="${VAULT_TOKENS_PATH}/.vault-token.$environment";
+            export VAULT_TOKEN=$(cat ${VAULT_TOKEN_FILE});
+            echo "VAULT_ADDR: $VAULT_ADDR";
+            echo "VAULT_TOKEN: (see ${VAULT_TOKEN_FILE})";
+        fi;
     fi
 }
 
