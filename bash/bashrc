@@ -68,6 +68,7 @@ alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].
 alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*"
 alias cg='cd `git rev-parse --show-toplevel`'
 alias timevmstat="vmstat -S M 3 | awk '{now=strftime(\"%Y-%m-%d %T \"); print now $0}'"
+alias emc='emacsclient -n'
 
 # only apply certain annoying platform specific stuff on the right platforms.
 case ${OSTYPE} in
