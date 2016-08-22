@@ -7,16 +7,14 @@
 (package-initialize)
 
 (setq package-list '(avy
-		     ample-theme
 		     base16-theme
 		     color-theme-sanityinc-tomorrow
 		     darktooth-theme
 		     exec-path-from-shell
 		     expand-region
 		     fill-column-indicator
-		     flymake-python-pyflakes
+		     flycheck
 		     highlight-numbers
-		     jedi
 		     json-mode
 		     markdown-mode
 		     multiple-cursors
@@ -24,6 +22,7 @@
 		     python-mode
 		     spacemacs-theme
 		     virtualenvwrapper
+		     projectile
 		     yaml-mode))
 
 (or (file-exists-p package-user-dir)
