@@ -19,11 +19,17 @@
 		     markdown-mode
 		     multiple-cursors
 		     nyan-mode
-		     python-mode
-		     spacemacs-theme
-		     virtualenvwrapper
+		     pyvenv
 		     projectile
-		     yaml-mode))
+		     magit
+		     yaml-mode
+		     jinja2-mode
+		     magit
+		     ido-vertical-mode
+		     jedi
+		     smex
+		     window-numbering
+		     spaceline))
 
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
