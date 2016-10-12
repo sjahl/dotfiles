@@ -13,7 +13,7 @@
 		     fill-column-indicator
 		     flycheck
 		     highlight-numbers
-		     highlight-delimiters
+		     highlight-parentheses
 		     json-mode
 		     markdown-mode
 		     multiple-cursors
