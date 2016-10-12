@@ -37,6 +37,7 @@ LANGUAGE=en_US.utf-8
 LC_ALL=en_US.utf-8
 LC_COLLATE=C
 LC_CTYPE=en_US.utf-8
+PYTHONIOENCODING=utf-8
 
 
 # Aliases
@@ -69,6 +70,8 @@ alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\"
 alias cg='cd `git rev-parse --show-toplevel`'
 alias timevmstat="vmstat -S M 3 | awk '{now=strftime(\"%Y-%m-%d %T \"); print now $0}'"
 alias emc='emacsclient -n'
+alias flake-py3='pip2 uninstall -y flake8 && pip3 install --upgrade flake8'
+alias flake-py2='pip3 uninstall -y flake8 && pip2 install --upgrade flake8'
 
 # only apply certain annoying platform specific stuff on the right platforms.
 case ${OSTYPE} in
@@ -191,3 +194,23 @@ vault_env ()
 }
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+function git-etags () {
+    if [ "$#" -eq 0 ]
+    then
+        local ROOT=`git rev-parse --show-toplevel`;
+    elif [ "$#" -eq 1 ]
+    then
+        local ROOT=$1
+    else
+        echo "Too many args."
+        exit 1
+    fi
+    pushd $ROOT > /dev/null
+    {
+        git ls-files --full-name;
+        git submodule foreach --quiet --recursive \
+            'git ls-files --full-name | while read line; do echo "$path/$line"; done;'
+    } | xargs etags -o "TAGS"
+    popd > /dev/null
+}
