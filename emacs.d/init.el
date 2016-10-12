@@ -112,3 +112,11 @@
 (if window-system
     (progn
       (load-theme 'base16-tomorrow-night t)))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (spaceline window-numbering smex jedi ido-vertical-mode jinja2-mode yaml-mode magit projectile pyvenv nyan-mode multiple-cursors markdown-mode json-mode highlight-parentheses highlight-numbers flycheck fill-column-indicator expand-region exec-path-from-shell base16-theme avy))))
