@@ -8,13 +8,12 @@
 
 (setq package-list '(avy
 		     base16-theme
-		     color-theme-sanityinc-tomorrow
-		     darktooth-theme
 		     exec-path-from-shell
 		     expand-region
 		     fill-column-indicator
 		     flycheck
 		     highlight-numbers
+		     highlight-delimiters
 		     json-mode
 		     markdown-mode
 		     multiple-cursors

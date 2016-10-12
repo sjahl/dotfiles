@@ -33,7 +33,7 @@
 
  '(minibuffer-prompt                   ((t (:foreground "#1278A8"  :background nil       :weight bold                                  ))))
  '(escape-glyph                        ((t (:foreground "orange"   :background nil                                                     ))))
- '(highlight                           ((t (:foreground "orange"   :background nil                                                     ))))
+ '(highlight                           ((t (:foreground nil   :background "#353942"                                                     ))))
  '(shadow                              ((t (:foreground "#777777"  :background nil                                                     ))))
 
  '(trailing-whitespace                 ((t (:foreground "#FFFFFF"  :background "#C74000"                                               ))))
@@ -89,8 +89,10 @@
 
 
  '(font-lock-comment-face ((t (:foreground "#5C6370"  :italic t))))
+ '(font-lock-doc-face ((t (:foreground "#5C6370"  :italic t))))
  '(font-lock-type-face ((t (:foreground "#E5C07B"  ))))
  '(font-lock-string-face ((t (:foreground "#C8AE9D"  ))))
+ '(font-lock-builtin-face ((t (:foreground "#56B6C2"  ))))
  '(diff-added ((t (:foreground "#C8AE9D"  ))))
  '(font-lock-keyword-face ((t (:foreground "#DD672C"  ))))
  '(diff-changed ((t (:foreground "#DD672C"  ))))
