@@ -1,5 +1,18 @@
 " Editor behavior
 
+" Vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'pearofducks/ansible-vim'
+Plugin 'rust-lang/rust.vim'
+call vundle#end()            " required
+filetype plugin indent on
+
+
+
 set autoindent
 set smartindent
 set ttyfast
@@ -16,7 +29,8 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 filetype on " enable filetype detection
-filetype plugin indent on " enable filetype-specific indenting
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+autocmd Filetype python setlocal ts=4 sw=4 expandtab
 "set printoptions=paper:letter
 
 " Editor looks
@@ -29,29 +43,10 @@ set title
 set scrolloff=3
 set hlsearch
 syntax on
-set background=dark
-
-" eww
-" GUI settings
-if has("gui_running")
-    colorscheme jellybeansmod
-    set cursorline
-    set lines=40
-    set columns=100
-    set t_Co=256
-    set gfn=Ubuntu\ Mono\ 12
-    set relativenumber
-    "set guicursor=a:hor1,a:blinkon0
-    "autocmd FocusLost * :set number
-    "autocmd FocusGained * :set relativenumber
-    autocmd InsertEnter * :set number
-    autocmd InsertLeave * :set relativenumber
-endif
-
-if has("gui_macvim")
-    set gfn=Menlo:h14
-endif
-
+set t_Co=256
+colorscheme jellybeans
+hi StatusLine ctermbg=black ctermfg=white
+set cursorline
 
 " Keyboard mappings
 let mapleader = ","
