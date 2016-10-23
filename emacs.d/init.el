@@ -64,7 +64,6 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "M-t") 'helm-cmd-t)
 
 ;; linting
 
@@ -83,10 +82,6 @@
 
 ;; highlight-parentheses
 (global-highlight-parentheses-mode)
-
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:get-in-function-call-delay 10000000)
-(setq jedi:complete-on-dot t)
 
 (defun git-grep ()
   "Grep for a symbol within the git repo of the current file."
@@ -111,7 +106,14 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-tomorrow-night t)))
+      (load-theme 'base16-tomorrow-night t)
+      (global-linum-mode 1)))
+
+;; be evil.
+(evil-mode 1)
+(evil-commentary-mode)
+(global-evil-surround-mode 1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -119,4 +121,4 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (spaceline window-numbering smex jedi ido-vertical-mode jinja2-mode yaml-mode magit projectile pyvenv nyan-mode multiple-cursors markdown-mode json-mode highlight-parentheses highlight-numbers flycheck fill-column-indicator expand-region exec-path-from-shell base16-theme avy))))
+    (vi-tilde-fringe jbeans-theme evil evil-commentary evil-surround tabbar-ruler tabbar spaceline window-numbering smex jedi ido-vertical-mode jinja2-mode yaml-mode magit projectile pyvenv nyan-mode multiple-cursors markdown-mode json-mode highlight-parentheses highlight-numbers flycheck fill-column-indicator expand-region exec-path-from-shell base16-theme avy))))

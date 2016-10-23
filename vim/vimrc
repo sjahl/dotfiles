@@ -8,6 +8,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'rust-lang/rust.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
 call vundle#end()            " required
 filetype plugin indent on
 
@@ -56,9 +58,3 @@ nnoremap <F5> :set list!<CR>
 " sort visually hilighted lines
 map <F9> :sort<CR>
 map Y y$
-
-" mess with the noobs
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-noremap <Up> <NOP>
-noremap <Down> <NOP>
