@@ -72,7 +72,7 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(pyvenv-mode)
+;(pyvenv-mode)
 
 ;; niceties for hilighting numbers
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)

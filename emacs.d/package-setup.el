@@ -6,29 +6,30 @@
 		"https://elpa.gnu.org/packages/")))
 (package-initialize)
 
-(setq package-list '(avy
-		     base16-theme
+(setq package-list '(base16-theme
 		     exec-path-from-shell
-		     expand-region
 		     fill-column-indicator
 		     flycheck
 		     highlight-numbers
 		     highlight-parentheses
+		     indent-guide
 		     json-mode
 		     markdown-mode
-		     multiple-cursors
 		     nyan-mode
-		     pyvenv
 		     projectile
 		     magit
 		     yaml-mode
 		     jinja2-mode
 		     magit
 		     ido-vertical-mode
-		     jedi
 		     smex
 		     window-numbering
-		     spaceline))
+		     evil
+		     evil-commentary
+		     evil-surround
+		     atom-one-dark-theme
+		     smart-mode-line
+		     pyenv-mode))
 
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))

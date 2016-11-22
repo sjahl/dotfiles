@@ -10,6 +10,8 @@ Plugin 'pearofducks/ansible-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
+Plugin 'sonph/onehalf', {'rtp': 'vim/'}
+Plugin 'vim-airline/vim-airline'
 call vundle#end()            " required
 filetype plugin indent on
 
@@ -21,7 +23,7 @@ set ttyfast
 set et
 set nobackup
 set listchars=tab:▸\ ,eol:¬
-set list
+" set list
 set comments=b:#,:%,fb:-,n:>,n:)
 set noerrorbells
 set ignorecase
@@ -32,29 +34,35 @@ set softtabstop=4
 set expandtab
 filetype on " enable filetype detection
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+autocmd Filetype ansible setlocal ts=2 sw=2 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 expandtab
 "set printoptions=paper:letter
 
 " Editor looks
-set laststatus=2
-set ruler
-set showcmd
-set showmode
+ set laststatus=2
+" set ruler
+" set showcmd
+" set showmode
+set relativenumber
 set number
 set title
-set scrolloff=3
+" set scrolloff=3
 set hlsearch
 syntax on
 set t_Co=256
-colorscheme jellybeans
-hi StatusLine ctermbg=black ctermfg=white
 set cursorline
+colorscheme onehalfdark
+" hi StatusLine ctermbg=black ctermfg=white
 
+let g:airline_theme='onehalfdark'
+" lightline
+" let g:lightline.colorscheme='onehalfdark'
 " Keyboard mappings
 let mapleader = ","
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <F3> :set paste!<CR>
 nnoremap <F5> :set list!<CR>
+nnoremap <F4> :set relativenumber!<CR>
 " sort visually hilighted lines
 map <F9> :sort<CR>
 map Y y$
