@@ -4,6 +4,18 @@
 ;; You may delete these explanatory comments.
 ;;(package-initialize)
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" "c6bac01425701418ca444aa68a6e88f671797fc43299a9a84be3d3a8557dd308" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ '(package-selected-packages
+   (quote
+    (molokai-theme smart-mode-line-powerline-theme indent-guide vi-tilde-fringe jbeans-theme evil evil-commentary evil-surround tabbar-ruler tabbar spaceline window-numbering smex jedi ido-vertical-mode jinja2-mode yaml-mode magit projectile pyvenv nyan-mode markdown-mode json-mode highlight-parentheses highlight-numbers flycheck fill-column-indicator exec-path-from-shell base16-theme avy))))
+
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (column-number-mode t)
@@ -56,15 +68,6 @@
  ;; If there is more than one, they won't work right.
  '(vertical-border ((t (:foreground "#5a5a5a")))))
 
-;; general keybindings
-(global-set-key (kbd "M--") 'er/expand-region)
-(global-set-key (kbd "M-+")'er/mark-inside-quotes)
-(global-set-key (kbd "M-=")'er/mark-inside-pairs)
-(global-set-key (kbd "C-c SPC") 'avy-goto-char)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
 ;; linting
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -94,9 +97,6 @@
 ;; I (Scott) bind this to CTRL-C g.
 (global-set-key "\C-cg" 'git-grep)
 
-;; magit keybinding
-(global-set-key (kbd "C-x g") 'magit-status)
-
 ;; nicer looking ido and better M-x
 (ido-vertical-mode 1)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
@@ -106,19 +106,20 @@
 
 (if window-system
     (progn
-      (load-theme 'base16-tomorrow-night t)
+      (load-theme 'atom-one-dark t)
       (global-linum-mode 1)))
 
+;; indent-guide
+(indent-guide-global-mode)
+
 ;; be evil.
+(setq evil-want-C-u-scroll t)
 (evil-mode 1)
 (evil-commentary-mode)
 (global-evil-surround-mode 1)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (vi-tilde-fringe jbeans-theme evil evil-commentary evil-surround tabbar-ruler tabbar spaceline window-numbering smex jedi ido-vertical-mode jinja2-mode yaml-mode magit projectile pyvenv nyan-mode multiple-cursors markdown-mode json-mode highlight-parentheses highlight-numbers flycheck fill-column-indicator expand-region exec-path-from-shell base16-theme avy))))
+;; sml
+(sml/setup)
+(add-to-list 'rm-excluded-modes " ing")
+(add-to-list 'rm-excluded-modes " Undo-Tree")
+(add-to-list 'rm-excluded-modes " s-/")
