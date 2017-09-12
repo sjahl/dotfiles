@@ -17,7 +17,6 @@
 		     markdown-mode
 		     nyan-mode
 		     projectile
-		     magit
 		     yaml-mode
 		     jinja2-mode
 		     magit
@@ -27,9 +26,9 @@
 		     evil
 		     evil-commentary
 		     evil-surround
-		     atom-one-dark-theme
 		     smart-mode-line
-		     pyenv-mode))
+		     pyenv-mode
+		     doom-themes))
 
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
