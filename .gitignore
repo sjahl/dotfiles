@@ -15,4 +15,7 @@ emacs.d/ac-comphist.dat
 emacs.d/ido.last
 emacs.d/projectile-bookmarks.eld
 emacs.d/tmp/
+emacs.d/smex-items
 vim/bundle
+vim/.netrwhist
+vim/init.vim

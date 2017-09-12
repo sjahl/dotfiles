@@ -1,18 +1,9 @@
 " Editor behavior
 
-" Vundle
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-Plugin 'sonph/onehalf', {'rtp': 'vim/'}
-Plugin 'vim-airline/vim-airline'
-call vundle#end()            " required
+
+" plugins
+execute pathogen#infect()
 filetype plugin indent on
 
 
@@ -43,18 +34,18 @@ autocmd Filetype python setlocal ts=4 sw=4 expandtab
 " set ruler
 " set showcmd
 " set showmode
-set relativenumber
+" set relativenumber
 set number
 set title
 " set scrolloff=3
 set hlsearch
 syntax on
 set t_Co=256
-set cursorline
-colorscheme onehalfdark
+" set cursorline
+colorscheme jellybeans
 " hi StatusLine ctermbg=black ctermfg=white
 
-let g:airline_theme='onehalfdark'
+" let g:airline_theme='onehalfdark'
 " lightline
 " let g:lightline.colorscheme='onehalfdark'
 " Keyboard mappings
