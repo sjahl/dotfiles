@@ -4,9 +4,10 @@ set nocompatible
 
 " plugins
 execute pathogen#infect()
+call pathogen#helptags()
 filetype plugin indent on
 
-
+set rtp+=/usr/local/opt/fzf
 
 set autoindent
 set smartindent
@@ -23,6 +24,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set backspace=indent,eol,start
 filetype on " enable filetype detection
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 autocmd Filetype ansible setlocal ts=2 sw=2 expandtab
@@ -41,11 +43,12 @@ set title
 set hlsearch
 syntax on
 set t_Co=256
-" set cursorline
-colorscheme jellybeans
+set cursorline
+colorscheme gruvbox
 " hi StatusLine ctermbg=black ctermfg=white
 
-" let g:airline_theme='onehalfdark'
+let g:airline_theme='gruvbox'
+let g:airline#extensions#tabline#enabled = 1
 " lightline
 " let g:lightline.colorscheme='onehalfdark'
 " Keyboard mappings
@@ -54,6 +57,7 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <F3> :set paste!<CR>
 nnoremap <F5> :set list!<CR>
 nnoremap <F4> :set relativenumber!<CR>
+nnoremap <C-x> :bnext<CR>
 " sort visually hilighted lines
 map <F9> :sort<CR>
 map Y y$
