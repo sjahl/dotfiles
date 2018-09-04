@@ -7,35 +7,33 @@ execute pathogen#infect()
 call pathogen#helptags()
 filetype plugin indent on
 
-set rtp+=/usr/local/opt/fzf
+" tab stuff -- commented out since installing sleuth
+" set autoindent
+" set smartindent
+" set tabstop=4
+" set shiftwidth=4
+" set softtabstop=4
+" set expandtab
+" autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+" autocmd Filetype ansible setlocal ts=2 sw=2 expandtab
+" autocmd Filetype python setlocal ts=4 sw=4 expandtab
 
-set autoindent
-set smartindent
 set ttyfast
 set et
 set nobackup
-set listchars=tab:▸\ ,eol:¬
+" set listchars=tab:▸\ ,eol:¬
 " set list
 set comments=b:#,:%,fb:-,n:>,n:)
 set noerrorbells
 set ignorecase
 set modelines=0
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
 set backspace=indent,eol,start
 filetype on " enable filetype detection
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype ansible setlocal ts=2 sw=2 expandtab
-autocmd Filetype python setlocal ts=4 sw=4 expandtab
-"set printoptions=paper:letter
+set tags=tags;/
 
 " Editor looks
  set laststatus=2
-" set ruler
-" set showcmd
-" set showmode
+set ruler
 " set relativenumber
 set number
 set title
@@ -44,13 +42,12 @@ set hlsearch
 syntax on
 set t_Co=256
 set cursorline
-colorscheme gruvbox
-" hi StatusLine ctermbg=black ctermfg=white
+set background=dark
+colorscheme iceberg
+set termguicolors
+set noshowmode
+let g:lightline = {'colorscheme': 'iceberg',}
 
-let g:airline_theme='gruvbox'
-let g:airline#extensions#tabline#enabled = 1
-" lightline
-" let g:lightline.colorscheme='onehalfdark'
 " Keyboard mappings
 let mapleader = ","
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
