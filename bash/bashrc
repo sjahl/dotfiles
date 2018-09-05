@@ -37,7 +37,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 CLICOLOR=1
 PAGER=less
 LSCOLORS='ExGxFxdxCxDxDxBxBxExEx'
-[[ $TMUX = "" ]] && export TERM="xterm-256color"
+# [[ $TMUX = "" ]] && export TERM="xterm-256color"
 HISTCONTROL=ignoredups:ignorespace
 HISTIGNORE="&:ls:[bf]g:exit"
 HISTORY=5000
