@@ -21,8 +21,6 @@ filetype plugin indent on
 set ttyfast
 set et
 set nobackup
-" set listchars=tab:▸\ ,eol:¬
-" set list
 set comments=b:#,:%,fb:-,n:>,n:)
 set noerrorbells
 set ignorecase
@@ -40,13 +38,15 @@ set title
 " set scrolloff=3
 set hlsearch
 syntax on
-set t_Co=256
+" set t_Co=256
 set cursorline
 set background=dark
 colorscheme iceberg
 set termguicolors
 set noshowmode
 let g:lightline = {'colorscheme': 'iceberg',}
+" set listchars=tab:▸\ ,eol:¬
+" set list
 
 " Keyboard mappings
 let mapleader = ","
