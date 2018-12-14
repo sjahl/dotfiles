@@ -39,7 +39,7 @@ set title
 set hlsearch
 syntax on
 " set t_Co=256
-set cursorline
+" set cursorline
 set background=dark
 colorscheme iceberg
 set termguicolors
@@ -55,6 +55,7 @@ nnoremap <F3> :set paste!<CR>
 nnoremap <F5> :set list!<CR>
 nnoremap <F4> :set relativenumber!<CR>
 nnoremap <C-x> :bnext<CR>
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " sort visually hilighted lines
 map <F9> :sort<CR>
 map Y y$

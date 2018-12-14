@@ -62,7 +62,7 @@ alias sl='ls'
 alias cdd='cd'
 alias xs='cd'
 alias cim='vim'
-# alias vi='vim'
+alias vi='vim'
 alias psc='ps xawf -eo pid,user,cgroup,args'
 alias srd='screen -rd'
 alias sr='screen -r'
@@ -76,7 +76,7 @@ alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
 alias pgrep='pgrep -alf'
 alias cg='cd `git rev-parse --show-toplevel`'
 alias timevmstat="vmstat -S M 3 | awk '{now=strftime(\"%Y-%m-%d %T \"); print now $0}'"
-alias ludicrousspeed='xrandr --output HDMI1 --auto --output eDP1 --auto --right-of HDMI1'
+alias ludicrousspeed='xrandr --output HDMI1 --auto --output eDP1 --auto --left-of HDMI1'
 
 # only apply certain annoying platform specific stuff on the right platforms.
 case ${OSTYPE} in
@@ -135,29 +135,49 @@ watchec2 ()
 }
 
 export VAULT_TOKENS_PATH=~/Private/vault/tokens
+
 vault_env ()
 {
-    environment=$1;
-    if [[ -z $environment ]]; then
-        if [[ -n $VAULT_ADDR || -n $VAULT_TOKEN ]]; then
-            echo $VAULT_ADDR;
-            [[ -n $VAULT_TOKEN ]] && echo "VAULT_TOKEN is set.";
-        else
-            echo "Vault is not configured in your environment";
-        fi;
-    else
-        if [[ $environment == 'clear' ]]; then
-            unset VAULT_ADDR;
-            unset VAULT_TOKEN;
-            echo "unset VAULT_ADDR and VAULT_TOKEN";
-        else
-            export VAULT_ADDR=https://consul.$environment.int.dynoquant.com:8200;
-            VAULT_TOKEN_FILE="${VAULT_TOKENS_PATH}/.vault-token.$environment";
-            export VAULT_TOKEN=$(cat ${VAULT_TOKEN_FILE});
-            echo "VAULT_ADDR: $VAULT_ADDR";
-            echo "VAULT_TOKEN: (see ${VAULT_TOKEN_FILE})";
-        fi;
-    fi
+   local environment=$1;
+   case $environment in
+       clear)
+           unset VAULT_ADDR;
+           unset VAULT_TOKEN;
+           echo "unset VAULT_ADDR AND VAULT_TOKEN"
+       ;;
+       qbernetes-dev)
+           export VAULT_ADDR="https://vault-qbernetes-dev.stg.int.dynoquant.com:8200";
+           vault login -method=aws role=sre header_value=qbernetes-dev
+       ;;
+       qbernetes-stg)
+           export VAULT_ADDR="https://vault-qbernetes.stg.int.dynoquant.com:8200";
+           vault login -method=aws role=sre header_value=qbernetes-stg
+       ;;
+       qbernetes-prd)
+           export VAULT_ADDR="https://vault-qbernetes.prd.int.dynoquant.com:8200";
+           vault login -method=aws role=sre header_value=qbernetes-prd
+       ;;
+       stg)
+           export VAULT_ADDR="https://consul.stg.int.dynoquant.com:8200";
+           export VAULT_TOKEN=$(cat ~/Private/vault/tokens/.vault-token.stg)
+       ;;
+       prd)
+           export VAULT_ADDR="https://consul.prd.int.dynoquant.com:8200";
+           export VAULT_TOKEN=$(cat ~/Private/vault/tokens/.vault-token.prd)
+       ;;
+       *)
+           if [[ -z $environment ]]; then
+               if [[ -n $VAULT_ADDR || -n $VAULT_TOKEN ]]; then
+                   echo "VAULT_ADDR: $VAULT_ADDR";
+                   [[ -n $VAULT_TOKEN ]] && echo "VAULT_TOKEN is set.";
+               else
+                   echo "Vault is not configured in your environment";
+               fi;
+           else
+               echo "Unknown environment: $environment";
+           fi
+       ;;
+   esac
 }
 
 vault_cp ()
@@ -172,10 +192,15 @@ vault_cp ()
     vault write "$2" value="$value"
 }
 
-gimme_ctags ()
+etags_git_python ()
 {
     cd `git rev-parse --show-toplevel` && \
-        ctags -R --fields=+l --languages=python --python-kinds=-iv -f ./tags . $(python -c "import os, sys; print(' '.join('{}'.format(d) for d in sys.path if os.path.isdir(d)))")
+    find . -type f -iname "*.py" | etags -
+}
+
+restic_backup_home ()
+{
+    restic --repo /mnt/deskdrive backup /home/sjahl --exclude="Private" --exclude ".cache"
 }
 
 if [ -f ~/git/quantopian/orchestration/etc/shell_include.sh ]; then
@@ -187,7 +212,7 @@ if [ -d /home/sjahl/go ]; then
     export PATH=${PATH}:$GOPATH/bin
 fi
 
-complete -C /usr/local/bin/vault vault
+complete -C /usr/bin/vault vault
 source <(kubectl completion bash)
 source <(helm completion bash)
 
