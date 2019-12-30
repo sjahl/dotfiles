@@ -1,10 +1,6 @@
 " Editor behavior
 
 set nocompatible
-
-" plugins
-execute pathogen#infect()
-call pathogen#helptags()
 filetype plugin indent on
 
 " tab stuff -- commented out since installing sleuth
@@ -17,6 +13,13 @@ filetype plugin indent on
 " autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 " autocmd Filetype ansible setlocal ts=2 sw=2 expandtab
 " autocmd Filetype python setlocal ts=4 sw=4 expandtab
+
+" a probably incomplete list of plugins in my pack/*/start dir
+" vim-sleuth
+" vim-surround
+" vim-commentary
+" lightline.vim
+" challenger-deep (theme)
 
 set ttyfast
 set et
@@ -41,10 +44,11 @@ syntax on
 " set t_Co=256
 " set cursorline
 set background=dark
-colorscheme iceberg
+colorscheme challenger_deep
 set termguicolors
 set noshowmode
-let g:lightline = {'colorscheme': 'iceberg',}
+set showcmd
+let g:lightline = {'colorscheme': 'challenger_deep',}
 " set listchars=tab:▸\ ,eol:¬
 " set list
 
@@ -59,3 +63,4 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " sort visually hilighted lines
 map <F9> :sort<CR>
 map Y y$
+
