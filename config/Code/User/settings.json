@@ -1,0 +1,48 @@
+{
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "editor.fontFamily": "'Ubuntu Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 16,
+    "window.menuBarVisibility": "toggle",
+    "editor.formatOnSave": true,
+    "window.title": "${dirty}${rootName}",
+    "window.openFoldersInNewWindow": "on",
+    "editor.parameterHints.enabled": false,
+    // "editor.quickSuggestions": {
+    //     "other": false,
+    //     "comments": false,
+    //     "strings": false,
+    // },
+    "ruby.lint": {
+        "rubocop": {
+            // "command": "rubocop --require rubocop-rails",
+            "useBundler": true,
+        }
+    },
+    "search.exclude": {
+        "**/.git": true
+    },
+    "ruby.useBundler": true,
+    "ruby.intellisense": "rubyLocate",
+    "ruby.codeCompletion": "rcodetools",
+    "python.pythonPath": "/usr/bin/python3",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "editor.renderLineHighlight": "all",
+    "editor.rulers": [
+        80
+    ],
+    "[ruby]": {
+        "editor.tabSize": 2
+    },
+    "[go]": {
+        "editor.tabSize": 8,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.snippetSuggestions": "none",
+    },
+    "go.useLanguageServer": true
+}
