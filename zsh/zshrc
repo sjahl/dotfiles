@@ -1,134 +1,20 @@
-autoload -Uz compinit promptinit colors select-word-style vcs_info edit-command-line
-compinit
-promptinit
-colors
-select-word-style bash
-zle -N edit-command-line
-
-zstyle ':vcs_info:*' enable git
-precmd() {
-    vcs_info
-}
-
-HISTFILE=~/.zhistfile
+HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt inc_append_history histignorespace autocd extendedglob nomatch notify sharehistory brace_ccl prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:*'    formats "" "%f%a %F{3}%m%u%c %f%b"
-zstyle ':vcs_info:*'    nvcsformats   "%f[%n@%m %1~]$ " ""
-zstyle ':vcs_info:*'    actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 
-PROMPT="[%*][%{$fg[white]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%20<...<%~%<<%{$reset_color%}]
- %(!.#.$) "
-RPROMPT='${vcs_info_msg_1_}'
+setopt appendhistory autocd extendedglob nomatch notify
 
 # keybindings
 bindkey -e
 bindkey \^U backward-kill-line
-bindkey "^X^E" edit-command-line
 
-# aliases
-alias ll='ls -al'
-alias sl='ls'
-alias cdd='cd'
-alias xs='cd'
-alias cim='vim'
-alias vi='vim'
-alias clearmemcache='sudo sh -c "sync; echo 3 > /proc/sys/vm/drop_caches"'
-alias psc='ps xawf -eo pid,user,cgroup,args'
-alias srd='screen -rd'
-alias sr='screen -r'
-alias xl='i3lock -n -c 333333'
-alias vimtab='vim "+set noexpandtab"'
-alias gvimtab='gvim "+set noexpandtab"'
-alias ta='tmux a'
-alias tmux="TERM=screen-256color-bce tmux"
-alias pgrep='pgrep -a'
-alias orch='workon orchestration && cd ~/git/quantopian/orchestration'
-alias vim='emacs -nw'
-alias cfs="aws cloudformation describe-stacks --query 'Stacks[].StackName'"
-alias asgs="aws autoscaling describe-auto-scaling-groups --query 'AutoScalingGroups[].AutoScalingGroupName'"
-alias elbs="aws elb describe-load-balancers --query 'LoadBalancerDescriptions[].LoadBalancerName'"
-alias deploys="aws ec2 describe-tags --filter \"Name=tag-key,Values=Deployment\" --query 'Tags[].Value' | grep '\"' | sed 's/.*\"\(.*"
+zstyle :compinstall filename '/home/jahl/.zshrc'
 
-case ${OSTYPE} in
-    darwin*)
-        alias ls='ls -GF'
-	source /usr/local/share/zsh/site-functions/_aws ;;
-    linux*)
-        alias ls='ls --color=always' ;;
-esac
+autoload -Uz compinit select-word-style promptinit
+compinit
+select-word-style bash
+promptinit
+prompt adam1
 
-export WORKON_HOME=~/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
-
-
-awsenv ()
-{
-    environment=$1;
-    if [[ -z $environment ]]; then
-        env | grep --color=auto AWS;
-    else
-        if [[ $environment == 'clear' ]]; then
-            unset AWS_PROFILE;
-            unset AWS_DEFAULT_PROFILE;
-        else
-            export AWS_PROFILE=$environment;
-            export AWS_DEFAULT_PROFILE=$environment;
-            env | grep --color=auto AWS;
-        fi;
-    fi
-}
-
-export AWS_PROFILE=default
-export AWS_DEFAULT_PROFILE=default
-
-iam_keys ()
-{
-    for u in $(aws iam list-users --query Users[].UserName --output text);
-    do
-        cmd="aws iam list-access-keys --user-name $u --query 'AccessKeyMetadata[].[UserName,AccessKeyId]' --output text";
-        eval $cmd;
-    done
-}
-
-quantoec2 ()
-{
-    if [[ -z $1 && -z $2 ]]; then
-        echo "Usage: quantoec2 <environment(development|staging|production)> <group/tag(cassandra|elasticsearch|tag_Name_Foo)> [command]";
-    else
-        if [[ -z $3 ]]; then
-            ansible -i ${HOME}/git/quantopian/orchestration/ansible/environments/${1} ${2} --list-hosts;
-        else
-            ansible -i ${HOME}/git/quantopian/orchestration/ansible/environments/${1} ${2} -m shell -a "${3}";
-        fi;
-    fi
-}
-
-quantotags ()
-{
-    if [[ -z $1 && -z $2 ]]; then
-        echo "Usage: quantotags <environment(Staging|Production)> <deployment(Consul,Databazaar,etc)>";
-    else
-        aws ec2 describe-instances --filters "Name=tag:Deployment,Values=$2" "Name=tag:Environment,Values=$1" --query "Reservations[].Instances[]";
-    fi
-}
-
-watchec2 ()
-{
-    if [[ -z $1 ]]; then
-        echo "Usage: watchec2 <fqdn>";
-    else
-        watch -n 3 nc -vz $1 22;
-    fi
-}
-
-# rbenv
 eval "$(rbenv init -)"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/vault vault
