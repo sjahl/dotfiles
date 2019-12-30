@@ -1,6 +1,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
+EDITOR=vim
+PAGER=less
 
 setopt appendhistory autocd extendedglob nomatch notify
 
