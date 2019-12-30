@@ -8,14 +8,8 @@
     "window.title": "${dirty}${rootName}",
     "window.openFoldersInNewWindow": "on",
     "editor.parameterHints.enabled": false,
-    // "editor.quickSuggestions": {
-    //     "other": false,
-    //     "comments": false,
-    //     "strings": false,
-    // },
     "ruby.lint": {
         "rubocop": {
-            // "command": "rubocop --require rubocop-rails",
             "useBundler": true,
         }
     },
