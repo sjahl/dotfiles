@@ -10,6 +10,9 @@ setopt appendhistory autocd extendedglob nomatch notify
 bindkey -e
 bindkey \^U backward-kill-line
 
+# aliases
+alias cg='cd `git rev-parse --show-toplevel`'
+
 zstyle :compinstall filename '/home/jahl/.zshrc'
 
 autoload -Uz compinit select-word-style promptinit
