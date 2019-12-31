@@ -13,14 +13,47 @@ bindkey \^U backward-kill-line
 # aliases
 alias cg='cd `git rev-parse --show-toplevel`'
 alias ls='ls --color=always'
+alias lsblk='lsblk -e 7'
+alias df='df -x "squashfs"'
+alias homebackup='restic -r /mnt/backups backup /home/jahl --exclude-file=/home/jahl/.restic/excludes.txt'
+alias vim='nvim'
 
 zstyle :compinstall filename '/home/jahl/.zshrc'
 
-autoload -Uz compinit select-word-style promptinit
+autoload -Uz compinit select-word-style promptinit colors
 compinit
 select-word-style bash
+colors
 promptinit
-prompt adam1
+
+#PROMPT='[%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%30<...<%~%<<%{$reset_color%}]%(!.#.$) '
+PS1="%{${bg[green]}${fg[black]}%}%n@%m%{$reset_color%} %2c
+ %#%{$reset_color%} "
 
 eval "$(rbenv init -)"
 
+# functions
+
+function load-aws-creds() {
+    if [[ -f "/home/jahl/.tmp-aws-creds" ]]; then
+
+        expiration=$(date -d $(cat ~/.tmp-aws-creds | jq '.Credentials.Expiration' | sed 's/\"//g') +%s)
+        now=$(date +%s)
+
+        if [[ $now -ge $expiration ]]; then
+            echo "credentials are expired"
+        else
+            export AWS_ACCESS_KEY_ID=$(cat ~/.tmp-aws-creds | jq '.Credentials.AccessKeyId' | sed 's/\"//g')
+            export AWS_SECRET_ACCESS_KEY=$(cat ~/.tmp-aws-creds | jq '.Credentials.SecretAccessKey' | sed 's/\"//g')
+            export AWS_SESSION_TOKEN=$(cat ~/.tmp-aws-creds | jq '.Credentials.SessionToken' | sed 's/\"//g')
+        fi
+    fi
+}
+
+# gets an 8 hour set of creds for AWS
+function get-aws-session() {
+    token=$1
+    aws sts get-session-token --serial-number "$(cat ~/.aws-sn)" --duration-seconds 28800 --token-code $token > ~/.tmp-aws-creds
+    chmod 600 ~/.tmp-aws-creds
+    load-aws-creds
+}

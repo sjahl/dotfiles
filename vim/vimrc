@@ -20,6 +20,8 @@ filetype plugin indent on
 " vim-commentary
 " lightline.vim
 " challenger-deep (theme)
+" solarized (theme)
+" nord (theme)
 
 set ttyfast
 set et
@@ -27,28 +29,34 @@ set nobackup
 set comments=b:#,:%,fb:-,n:>,n:)
 set noerrorbells
 set ignorecase
+set smartcase
 set modelines=0
 set backspace=indent,eol,start
 filetype on " enable filetype detection
 set tags=tags;/
+set mouse=a
+set autoread
+set autoindent
 
 " Editor looks
- set laststatus=2
+set laststatus=2
 set ruler
-" set relativenumber
 set number
 set title
-" set scrolloff=3
+set scrolloff=3
+set sidescrolloff=5
+set incsearch
 set hlsearch
 syntax on
-" set t_Co=256
-" set cursorline
 set background=dark
-colorscheme challenger_deep
+colorscheme nord
 set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set cursorline
 set noshowmode
 set showcmd
-let g:lightline = {'colorscheme': 'challenger_deep',}
+let g:lightline = {'colorscheme': 'nord',}
 " set listchars=tab:▸\ ,eol:¬
 " set list
 
@@ -56,11 +64,10 @@ let g:lightline = {'colorscheme': 'challenger_deep',}
 let mapleader = ","
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <F3> :set paste!<CR>
-nnoremap <F5> :set list!<CR>
+nnoremap <F6> :set list!<CR>
 nnoremap <F4> :set relativenumber!<CR>
 nnoremap <C-x> :bnext<CR>
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " sort visually hilighted lines
 map <F9> :sort<CR>
 map Y y$
-
