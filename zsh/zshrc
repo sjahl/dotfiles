@@ -12,6 +12,7 @@ bindkey \^U backward-kill-line
 
 # aliases
 alias cg='cd `git rev-parse --show-toplevel`'
+alias ls='ls --color=always'
 
 zstyle :compinstall filename '/home/jahl/.zshrc'
 
