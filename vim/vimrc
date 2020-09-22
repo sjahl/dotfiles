@@ -80,6 +80,6 @@ nnoremap <F4> :set relativenumber!<CR>
 nnoremap <C-x> :bnext<CR>
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " sort visually hilighted lines
-map <F9> :sort<CR>
+map <leader>s :sort<CR>
 map Y y$
 nmap <leader>t :TagbarToggle<CR>
