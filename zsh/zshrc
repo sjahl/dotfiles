@@ -16,7 +16,6 @@ alias ls='ls --color=always'
 alias lsblk='lsblk -e 7'
 alias df='df -x "squashfs"'
 alias homebackup='restic -r /mnt/backups backup /home/jahl --exclude-file=/home/jahl/.restic/excludes.txt'
-alias vim='nvim'
 
 zstyle :compinstall filename '/home/jahl/.zshrc'
 
