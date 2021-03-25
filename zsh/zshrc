@@ -1,10 +1,12 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-EDITOR=vim
-PAGER=less
+
+export EDITOR=nvim
+export PAGER=less
 
 setopt appendhistory autocd extendedglob nomatch notify
+setopt TRANSIENT_RPROMPT
 
 # keybindings
 bindkey -e
@@ -19,17 +21,33 @@ alias homebackup='restic -r /mnt/backups backup /home/jahl --exclude-file=/home/
 
 zstyle :compinstall filename '/home/jahl/.zshrc'
 
-autoload -Uz compinit select-word-style promptinit colors
+autoload -Uz compinit select-word-style promptinit colors vcs_info
 compinit
 select-word-style bash
 colors
 promptinit
 
-#PROMPT='[%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%30<...<%~%<<%{$reset_color%}]%(!.#.$) '
-PS1="%{${bg[green]}${fg[black]}%}%n@%m%{$reset_color%} %2c
- %#%{$reset_color%} "
+# show the current git branch in the right-side prompt
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+RPROMPT=\$vcs_info_msg_0_
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' formats '%b %u%c%m'
 
-eval "$(rbenv init -)"
+#PROMPT='[%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%30<...<%~%<<%{$reset_color%}]%(!.#.$) '
+# PS1="%{${bg[green]}${fg[black]}%}%n@%m%{$reset_color%} %2c
+#  %#%{$reset_color%} "
+
+PROMPT="%B%n@%m[%?]:%2c$%b "
+
+export PYENV_ROOT="$HOME/.pyenv"
+export GOPATH="$HOME/go"
+typeset -U PATH path
+path=("$HOME/.linkerd2/bin" "$GOPATH/bin" /usr/local/go/bin "$PYENV_ROOT/bin" /usr/local/sbin "$path[@]")
+export PATH
+
+eval "$(pyenv init -)"
 
 # functions
 
