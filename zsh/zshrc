@@ -14,10 +14,17 @@ bindkey \^U backward-kill-line
 
 # aliases
 alias cg='cd `git rev-parse --show-toplevel`'
+alias homebackup='restic -r /mnt/backups backup /home/jahl --exclude-file=/home/jahl/.restic/excludes.txt'
+alias vim='nvim'
+
+# gnu-ish
 alias ls='ls --color=always'
 alias lsblk='lsblk -e 7'
 alias df='df -x "squashfs"'
-alias homebackup='restic -r /mnt/backups backup /home/jahl --exclude-file=/home/jahl/.restic/excludes.txt'
+
+# bsd-ish
+# alias ls='ls -G'
+# alias ll='ls -G -altr'
 
 zstyle :compinstall filename '/home/jahl/.zshrc'
 
