@@ -28,6 +28,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'arcticicestudio/nord-vim'
 Plug 'hashivim/vim-terraform'
+Plug 'preservim/tagbar'
 call plug#end()
 
 set ttyfast
