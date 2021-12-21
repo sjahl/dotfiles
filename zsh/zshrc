@@ -5,56 +5,64 @@ SAVEHIST=1000
 export EDITOR=nvim
 export PAGER=less
 
-setopt appendhistory autocd extendedglob nomatch notify
-setopt TRANSIENT_RPROMPT
+setopt inc_append_history autocd extendedglob nomatch notify
+# setopt TRANSIENT_RPROMPT
 
 # keybindings
 bindkey -e
 bindkey \^U backward-kill-line
 
-# aliases
 alias cg='cd `git rev-parse --show-toplevel`'
-alias homebackup='restic -r /mnt/backups backup /home/jahl --exclude-file=/home/jahl/.restic/excludes.txt'
+alias ls='ls -G'
+alias ll='ls -G -altr'
 alias vim='nvim'
 
-# gnu-ish
-alias ls='ls --color=always'
-alias lsblk='lsblk -e 7'
-alias df='df -x "squashfs"'
-
-# bsd-ish
-# alias ls='ls -G'
-# alias ll='ls -G -altr'
-
-zstyle :compinstall filename '/home/jahl/.zshrc'
-
-autoload -Uz compinit select-word-style promptinit colors vcs_info
+# autoload -Uz compinit select-word-style promptinit vcs_info
+autoload -Uz compinit select-word-style promptinit
 compinit
 select-word-style bash
-colors
 promptinit
 
 # show the current git branch in the right-side prompt
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats '%b %u%c%m'
+# precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
+# setopt prompt_subst
+# RPROMPT=\$vcs_info_msg_0_
+# zstyle ':vcs_info:git:*' check-for-changes true
+# zstyle ':vcs_info:git:*' formats '%b %u%c%m'
 
-#PROMPT='[%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[red]%}%30<...<%~%<<%{$reset_color%}]%(!.#.$) '
-# PS1="%{${bg[green]}${fg[black]}%}%n@%m%{$reset_color%} %2c
+# PS1="%K{222}%F{235} %n@%m %f%k%{$reset_color%} %2c
 #  %#%{$reset_color%} "
 
-PROMPT="%B%n@%m[%?]:%2c$%b "
+# PS1="%B[%*] %2c
+#  %#%b "
 
-export PYENV_ROOT="$HOME/.pyenv"
+source ~/gitstatus/gitstatus.prompt.zsh
+PROMPT='%B%n@%m[%?]:%2c%b ${GITSTATUS_PROMPT}
+ $ '
+# RPROMPT='$GITSTATUS_PROMPT'
+
+# PS1="%B%n@%m %{$reset_color%}%2c
+#  %#%{$reset_color%} "
+
 export GOPATH="$HOME/go"
 typeset -U PATH path
-path=("$HOME/.linkerd2/bin" "$GOPATH/bin" /usr/local/go/bin "$PYENV_ROOT/bin" /usr/local/sbin "$path[@]")
+path=("$HOME/.local/bin" "$HOME/.linkerd2/bin" "$GOPATH/bin" /usr/local/go/bin /usr/local/sbin "$HOME/bin" "$path[@]")
 export PATH
 
+# export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 eval "$(pyenv init -)"
+# eval "$(rbenv init -)"
 
 # functions
 
