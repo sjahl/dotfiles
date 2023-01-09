@@ -33,11 +33,9 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'romainl/Apprentice'
 Plug 'towolf/vim-helm'
 Plug 'neovim/nvim-lspconfig'
-Plug 'altercation/vim-colors-solarized'
 Plug 'sainnhe/everforest'
 Plug 'airblade/vim-gitgutter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'ramojus/mellifluous.nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
