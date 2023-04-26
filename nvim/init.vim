@@ -70,6 +70,7 @@ set incsearch
 set hlsearch
 set termguicolors
 set background=dark
+set completeopt=menu
 
 lua << EOF
 require("tokyonight").setup({
@@ -81,20 +82,9 @@ require("tokyonight").setup({
 EOF
 
 let g:lightline = { 'colorscheme': 'tokyonight' }
-let g:everforest_background = 'hard'
-let g:everforest_better_performance = 1
+" let g:everforest_background = 'hard'
+" let g:everforest_better_performance = 1
 colorscheme tokyonight
-
-" if $ITERM_PROFILE == "Atom One Light"
-"   set background=light
-"   let g:lightline = { 'colorscheme': 'one' }
-"   colorscheme mac_classic
-" elseif $ITERM_PROFILE == "Base16 Default Dark"
-"   set background=dark
-"   let g:lightline = { 'colorscheme': 'everforest' }
-"   let g:everforest_background = 'hard'
-"   colorscheme everforest
-" endif
 
 set cursorline
 set noshowmode
@@ -132,24 +122,6 @@ map Y y$
 nmap <leader>t :TagbarToggle<CR>
 nmap <leader>b :BTags<CR>
 " vmap <leader>y "+y
-
-" lightline stuff
-function! s:set_lightline_colorscheme(name) abort
-  let g:lightline.colorscheme = a:name
-  call lightline#init()
-  call lightline#colorscheme()
-  call lightline#update()
-endfunction
-
-function! s:lightline_colorschemes(...) abort
-  return join(map(
-        \ globpath(&rtp,"autoload/lightline/colorscheme/*.vim",1,1),
-        \ "fnamemodify(v:val,':t:r')"),
-        \ "\n")
-endfunction
-
-command! -nargs=1 -complete=custom,s:lightline_colorschemes LightlineColorscheme
-      \ call s:set_lightline_colorscheme(<q-args>)
 
 "lsp stuff
 
@@ -239,7 +211,7 @@ require'nvim-treesitter.configs'.setup {
   auto_install = false,
 
   -- List of parsers to ignore installing (for "all")
-  ignore_install = { "javascript" },
+  -- ignore_install = { "javascript" },
 
   ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
   -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
