@@ -1,2 +1,4 @@
 export MOZ_USE_XINPUT2=1
-source "$HOME/.cargo/env"
+export WORKON_HOME="$HOME/.virtualenvs"
+export PATH=/Users/sjahl/.local/bin:/Users/sjahl/.linkerd2/bin:/Users/sjahl/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/sjahl/.cargo/bin
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True

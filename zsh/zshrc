@@ -1,91 +1,50 @@
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 export EDITOR=nvim
 export PAGER=less
 
-setopt inc_append_history autocd extendedglob nomatch notify
-# setopt TRANSIENT_RPROMPT
+fpath+=~/.zfunc
 
-# keybindings
-bindkey -e
-bindkey \^U backward-kill-line
+setopt INC_APPEND_HISTORY_TIME AUTOCD EXTENDEDGLOB NOMATCH NOTIFY
+
+# autoload -Uz compinit select-word-style promptinit vcs_info
+autoload -Uz compinit select-word-style promptinit helmver colors
+compinit
+select-word-style bash
+promptinit
+colors
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
+source ~/gitstatus/gitstatus.prompt.zsh
+PROMPT='[%(?.%{$fg[default]%}.%{$fg[red]%})%?%{$reset_color%}]:%18<..<%~ %F{208}%#%f '
+RPROMPT='$GITSTATUS_PROMPT'
+
+# a more friendly tab complete menu
+zstyle ':completion:*' menu select
 
 alias cg='cd `git rev-parse --show-toplevel`'
 alias ls='ls -G'
 alias ll='ls -G -altr'
 alias vim='nvim'
+alias gclist='gcloud config configurations list'
 
-# autoload -Uz compinit select-word-style promptinit vcs_info
-autoload -Uz compinit select-word-style promptinit
-compinit
-select-word-style bash
-promptinit
+bindkey -e
+bindkey \^U backward-kill-line
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
-# show the current git branch in the right-side prompt
-# precmd_vcs_info() { vcs_info }
-# precmd_functions+=( precmd_vcs_info )
-# setopt prompt_subst
-# RPROMPT=\$vcs_info_msg_0_
-# zstyle ':vcs_info:git:*' check-for-changes true
-# zstyle ':vcs_info:git:*' formats '%b %u%c%m'
+source /usr/local/bin/virtualenvwrapper.sh
 
-# PS1="%K{222}%F{235} %n@%m %f%k%{$reset_color%} %2c
-#  %#%{$reset_color%} "
-
-# PS1="%B[%*] %2c
-#  %#%b "
-
-source ~/gitstatus/gitstatus.prompt.zsh
-PROMPT='%B%n@%m[%?]:%2c%b ${GITSTATUS_PROMPT}
- $ '
-# RPROMPT='$GITSTATUS_PROMPT'
-
-# PS1="%B%n@%m %{$reset_color%}%2c
-#  %#%{$reset_color%} "
-
-export GOPATH="$HOME/go"
-typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/.linkerd2/bin" "$GOPATH/bin" /usr/local/go/bin /usr/local/sbin "$HOME/bin" "$path[@]")
-export PATH
-
-# export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
+export CLOUDSDK_PYTHON="/usr/local/opt/python@3/libexec/bin/python"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
+. /usr/local/opt/asdf/libexec/asdf.sh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-eval "$(pyenv init -)"
-# eval "$(rbenv init -)"
-
-# functions
-
-function load-aws-creds() {
-    if [[ -f "/home/jahl/.tmp-aws-creds" ]]; then
-
-        expiration=$(date -d $(cat ~/.tmp-aws-creds | jq '.Credentials.Expiration' | sed 's/\"//g') +%s)
-        now=$(date +%s)
-
-        if [[ $now -ge $expiration ]]; then
-            echo "credentials are expired"
-        else
-            export AWS_ACCESS_KEY_ID=$(cat ~/.tmp-aws-creds | jq '.Credentials.AccessKeyId' | sed 's/\"//g')
-            export AWS_SECRET_ACCESS_KEY=$(cat ~/.tmp-aws-creds | jq '.Credentials.SecretAccessKey' | sed 's/\"//g')
-            export AWS_SESSION_TOKEN=$(cat ~/.tmp-aws-creds | jq '.Credentials.SessionToken' | sed 's/\"//g')
-        fi
-    fi
-}
-
-# gets an 8 hour set of creds for AWS
-function get-aws-session() {
-    token=$1
-    aws sts get-session-token --serial-number "$(cat ~/.aws-sn)" --duration-seconds 28800 --token-code $token > ~/.tmp-aws-creds
-    chmod 600 ~/.tmp-aws-creds
-    load-aws-creds
-}
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/sjahl/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
